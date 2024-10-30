@@ -347,3 +347,11 @@ thead tr th {
 tr td {
     text-align: start !important;
 }
+
+.navegation .menu-item.active {
+
+    font-weight: bold;
+
+    text-decoration: underline;
+
+}

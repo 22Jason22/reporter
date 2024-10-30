@@ -1,4 +1,3 @@
-<!-- modales/modalDetalles.php -->
 <!-- Modal para mostrar los detalles del empleado -->
 <div class="modal fade" id="detalleEmpleadoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">

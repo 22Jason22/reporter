@@ -49,8 +49,8 @@
     include("config/config.php");
     include("acciones/acciones.php");
 
-    $reportes = ObtenerReportes($conexion);
-    $totalReportes = $reportes->num_rows;
+    $solicitudes = ObtenerSolicitudes($conexion);
+    $totalSolicitudes = $solicitudes->num_rows;
     ?>
 
 
@@ -60,11 +60,11 @@
             <div class="sec_trab">
                 <div class="col-md-12">
                     <h1 class="text-center">
-                        Lista de Reportes (<?php echo $totalReportes ?>)
+                        Lista de Reportes (<?php echo $totalSolicitudes ?>)
                         <span class="float-end">
                             <a href="acciones/exportar.php" class="btn btn-success" title="Exportar a CSV" download="Reportes.csv"><i class="bi bi-filetype-csv"></i></a>
                         </span>
-                        <hr>si
+                        <hr>
                     </h1>
                         <div class="table-responsive">
                             <table class="table table-hover" id="table_empleados">
@@ -81,19 +81,19 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    foreach ($reportes as $reporte) { ?>
-                                        <tr id="empleado_<?php echo $reporte['id']; ?>">
-                                            <th scope='row'><?php echo $reporte['id']; ?></th>
-                                            <td><?php echo $reporte['nombre']; ?></td>
-                                            <td> <?php echo $reporte['edad']; ?></td>
-                                            <td><?php echo $reporte['cedula']; ?></td>
-                                            <td><?php echo $reporte['telefono']; ?></td>
-                                            <td><?php echo $reporte['identificador']; ?></td>
+                                    foreach ($solicitudes as $solicitude) { ?>
+                                        <tr id="empleado_<?php echo $solicitude['id']; ?>">
+                                            <th scope='row'><?php echo $solicitude['id']; ?></th>
+                                            <td><?php echo $solicitude['nombre']; ?></td>
+                                            <td> <?php echo $solicitude['edad']; ?></td>
+                                            <td><?php echo $solicitude['cedula']; ?></td>
+                                            <td><?php echo $solicitude['telefono']; ?></td>
+                                            <td><?php echo $solicitude['identificador']; ?></td>
                                             <td>
-                                                <a title="Ver detalles del Reporte" href="#" onclick="verDetallesReporte(<?php echo $reporte['id']; ?>)" class="btn btn-success">
+                                                <a title="Ver detalles del Reporte" href="#" onclick="verDetallesReporte(<?php echo $solicitude['id']; ?>)" class="btn btn-success">
                                                     <i class="bi bi-binoculars"></i>
                                                 </a>
-                                                <a title="Eliminar datos del Reporte" href="#" onclick="EliminarReporte(<?php echo $reporte['id']; ?>)" class="btn btn-danger">
+                                                <a title="Eliminar datos del Reporte" href="#" onclick="EliminarReporte(<?php echo $solicitude['id']; ?>)" class="btn btn-danger">
                                                     <i class="bi bi-trash"></i>
                                                 </a>
                                             </td>

@@ -1,185 +1,236 @@
+/**
+ * Función para mostrar la modal de detalles del empleado
+ */
 async function verDetallesReporte(idEmpleado) {
-    try {
-        const existingModal = document.getElementById("detalleEmpleadoModal");
-        if (existingModal) {
-            const modal = bootstrap.Modal.getInstance(existingModal);
-            if (modal) {
-                modal.hide();
-            }
-        }
-
-        const response = await fetch("modales/modalDetalles.php");
-        if (!response.ok) {
-            throw new Error("Error al cargar la modal de detalles del empleado");
-        }
-
-        const modalHTML = await response.text();
-        const modalContainer = document.createElement("div");
-        modalContainer.innerHTML = modalHTML;
-        document.body.appendChild(modalContainer);
-
-        const myModal = new bootstrap.Modal(modalContainer.querySelector("#detalleEmpleadoModal"));
-        myModal.show();
-
-        await cargarDetalleEmpleado(idEmpleado);
-    } catch (error) {
-        console.error(error);
-        alert("Hubo un problema al cargar los detalles del empleado.");
+  try {
+    // Ocultar la modal si está abierta
+    const existingModal = document.getElementById("detalleEmpleadoModal");
+    if (existingModal) {
+      const modal = bootstrap.Modal.getInstance(existingModal);
+      if (modal) {
+        modal.hide();
+      }
+      existingModal.remove(); // Eliminar la modal existente
     }
+
+    // Buscar la Modal de Detalles
+    const response = await fetch("modales/modalDetalles.php");
+    if (!response.ok) {
+      throw new Error("Error al cargar la modal de detalles del empleado");
+    }
+    // response.text() es un método en programación que se utiliza para obtener el contenido de texto de una respuesta HTTP
+    const modalHTML = await response.text();
+
+    // Crear un elemento div para almacenar el contenido de la modal
+    const modalContainer = document.createElement("div");
+    modalContainer.innerHTML = modalHTML;
+
+    // Agregar la modal al documento actual
+    document.body.appendChild(modalContainer);
+
+    // Mostrar la modal
+    const myModal = new bootstrap.Modal(
+      modalContainer.querySelector("#detalleEmpleadoModal")
+    );
+    myModal.show();
+
+    await cargarDetalleEmpleado(idEmpleado);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
+/**
+ * Función para cargar y mostrar los detalles del empleado en la modal
+ */
 async function cargarDetalleEmpleado(idEmpleado) {
-    try {
-        const response = await axios.get(`acciones/detallesEmpleado.php?id=${idEmpleado}`);
-        if (response.status === 200 && response.data) {
-            const {
-                id,
-                tipo_sujeto,
-                identificador,
-                nombre,
-                telefono,
-                sexo,
-                edad,
-                hectareas,
-                id_solicitud,
-                id_expediente,
-                id_punto_cuenta,
-                estatus_punto_cuenta,
-                cedula,
-                estado,
-                municipio,
-                parroquia,
-                sede,
-                nro_expediente,
-                mes,
-            } = response.data;
 
-            const ulDetalleEmpleado = document.querySelector("#detalleEmpleadoContenido ul");
-            const detalleEmpleadoHTML = ` 
+  try {
 
-<li class="list-group-item"><b>ID:</b> 
+    const response = await axios.get(
 
-  ${id ? id : "No disponible"}
+      `acciones/detallesEmpleado.php?id=${idEmpleado}`
 
-</li>
+    );
 
-<li class="list-group-item"><b>Tipo de sujeto:</b> 
+    if (response.status === 200) {
 
-  ${tipo_sujeto ? tipo_sujeto : "No disponible"}
+      console.log(response.data);
 
-</li>
+      const {
 
-<li class="list-group-item"><b>Identificador:</b> 
+        id,
 
-  ${identificador ? identificador : "No disponible"}
+        tipo_sujeto,
 
-</li>
+        identificador,
 
-<li class=" list-group-item"><b>Beneficiario:</b> 
+        nombre,
 
-  ${nombre ? nombre : "No disponible"}
+        telefono,
 
-</li>
+        sexo,
 
-<li class="list-group-item"><b>Teléfono:</b> 
+        edad,
 
-  ${telefono ? telefono : "No disponible"}
+        hectareas,
 
-</li>
+        id_solicitud,
 
-<li class="list-group-item"><b>Sexo:</b> 
+        id_expediente,
 
-  ${sexo ? sexo : "No disponible"}
+        id_punto_cuenta,
 
-</li>
+        estatus_punto_cuenta,
 
-<li class="list-group-item"><b>Edad:</b> 
+        cedula,
 
-  ${edad ? edad : "No disponible"}
+        estado,
 
-</li>
+        municipio,
 
-<li class="list-group-item"><b>Hectáreas:</b> 
+        parroquia,
 
-  ${hectareas ? hectareas : "No disponible"}
+        sede,
 
-</li>
+        nro_expediente,
 
-<li class="list-group-item"><b>ID de solicitud:</b> 
+        mes,
 
-  ${id_solicitud ? id_solicitud : "No disponible"}
+      } = response.data;
 
-</li>
 
-<li class="list-group-item"><b>ID de expediente:</b> 
+      const ulDetalleEmpleado = document.querySelector(
 
-  ${id_expediente ? id_expediente : "No disponible"}
+        "#detalleEmpleadoContenido ul"
 
-</li>
+      );
 
-<li class="list-group-item"><b>ID de punto de cuenta:</b> 
 
-  ${id_punto_cuenta ? id_punto_cuenta : "No disponible"}
+      ulDetalleEmpleado.innerHTML = ` 
 
-</li>
+        <li class="list-group-item"><b>ID:</b> 
 
-<li class="list-group-item"><b>Estatus de punto de cuenta:</b> 
+          ${id ? id : "No disponible"}
 
-  ${estatus_punto_cuenta ? estatus_punto_cuenta : "No disponible"}
+        </li>
 
-</li>
+        <li class="list-group-item"><b>Tipo de sujeto:</b> 
 
-<li class="list-group-item"><b>Cédula:</b> 
+          ${tipo_sujeto ? tipo_sujeto : "No disponible"}
 
-  ${cedula ? cedula : "No disponible"}
+        </li>
 
-</li>
+        <li class="list-group-item"><b>Identificador:</b> 
 
-<li class="list-group-item"><b>Estado:</b> 
+          ${identificador ? identificador : "No disponible"}
 
-  ${estado ? estado : "No disponible"}
+        </li>
 
-</li>
+        <li class=" list-group-item"><b>Beneficiario:</b> 
 
-<li class="list-group-item"><b>Municipio:</b> 
+          ${nombre ? nombre : "No disponible"}
 
-  ${municipio ? municipio : "No disponible"}
+        </li>
 
-</li>
+        <li class="list-group-item"><b>Teléfono:</b> 
 
-<li class="list-group-item"><b>Parroquia:</b> 
+          ${telefono ? telefono : "No disponible"}
 
-  ${parroquia ? parroquia : "No disponible"}
+        </li>
 
-</li>
+        <li class="list-group-item"><b>Sexo:</b> 
 
-<li class="list-group-item"><b>Sede:</b> 
+          ${sexo ? sexo : "No disponible"}
 
-  ${sede ? sede : "No disponible"}
+        </li>
 
-</li>
+        <li class="list-group-item"><b>Edad:</b> 
 
-<li class="list-group-item"><b>Número de expediente:</b> 
+          ${edad ? edad : "No disponible"}
 
-  ${nro_expediente ? nro_expediente : "No disponible"}
+        </li>
 
-</li>
+        <li class="list-group-item"><b>Hectáreas:</b> 
 
-<li class="list-group-item"><b>Mes:</b> 
+          ${hectareas ? hectareas : "No disponible"}
 
-  ${mes ? mes : "No disponible"}
+        </li>
 
-</li>
+        <li class="list-group-item"><b>ID de solicitud:</b> 
 
-`;
+          ${id_solicitud ? id_solicitud : "No disponible"}
 
-            ulDetalleEmpleado.innerHTML = detalleEmpleadoHTML;
-        } else {
-            alert("No se encontraron detalles para el empleado.");
-        }
-    } catch (error) {
-        console.error(error);
-        alert("Hubo un problema al cargar los detalles del empleado.");
+        </li>
+
+        <li class="list-group-item"><b>ID de expediente:</b> 
+
+          ${id_expediente ? id_expediente : "No disponible"}
+
+        </li>
+
+        <li class="list-group-item"><b>ID de punto de cuenta:</b> 
+
+          ${id_punto_cuenta ? id_punto_cuenta : "No disponible"}
+
+        </li>
+
+        <li class="list-group-item"><b>Estatus de punto de cuenta:</b> 
+
+          ${estatus_punto_cuenta ? estatus_punto_cuenta : "No disponible"}
+
+        </li>
+
+        <li class="list-group-item"><b>Cédula:</b> 
+
+          ${cedula ? cedula : "No disponible"}
+
+        </li>
+
+        <li class="list-group-item"><b>Estado:</b> 
+
+          ${estado ? estado : "No disponible"}
+
+        </li>
+
+        <li class="list-group-item"><b>Municipio:</b> 
+
+          ${municipio ? municipio : "No disponible"}
+
+        </li>
+
+        <li class="list-group-item"><b>Parroquia:</b> 
+
+          ${parroquia ? parroquia : "No disponible"}
+
+        </li>
+
+        <li class="list-group-item"><b>Sede:</b> 
+
+          ${sede ? sede : "No disponible"}
+
+        </li>
+
+        <li class="list-group-item"><b>Número de expediente:</b> 
+
+          ${nro_expediente ? nro_expediente : "No disponible"}
+
+        </li>
+
+        <li class="list-group-item"><b>Mes:</b> 
+
+          ${mes ? mes : "No disponible"}
+
+        </li>
+
+      `;
+
+
+    } else {
+      alert(`Error al cargar los detalles del empleado con ID ${idEmpleado}`);
     }
+  } catch (error) {
+    console.error(error);
+    alert("Hubo un problema al cargar los detalles del empleado");
+  }
 }
-
