@@ -93,7 +93,7 @@
                                                 <a title="Ver detalles del Reporte" href="#" onclick="verDetallesReporte(<?php echo $solicitude['id']; ?>)" class="btn btn-success">
                                                     <i class="bi bi-binoculars"></i>
                                                 </a>
-                                                <a title="Eliminar datos del Reporte" href="#" onclick="EliminarReporte(<?php echo $solicitude['id']; ?>)" class="btn btn-danger">
+                                                <a title="Eliminar datos de la Solicitud" href="#" onclick="EliminarReporte(<?php echo $solicitude['id']; ?>, 'solicitud')" class="btn btn-danger">
                                                     <i class="bi bi-trash"></i>
                                                 </a>
                                             </td>

@@ -7,26 +7,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Decodificar los datos JSON en un array asociativo
     $data = json_decode($json_data, true);
 
-
     // Verificar si los datos se decodificaron correctamente
     if ($data !== null) {
         $id = $data['id'];
-        $avatarName = $data['avatar'];
+        $tipo = $data['tipo']; // 'empleado' o 'solicitud'
 
-        $sql = "DELETE FROM trabajadas WHERE id=$id";
-        if ($conexion->query($sql) === TRUE) {
-            // Eliminar el archivo de imagen si existe
-            $dirLocal = "fotos_empleados";
-            $filePath = $dirLocal . '/' . $avatarName;
-            if (file_exists($filePath)) {
-                unlink($filePath); // Eliminar el archivo de imagen
+        // Determinar la tabla basada en el tipo
+        $tabla = ($tipo === 'solicitud') ? 'solicitudes' : 'trabajadas';
+
+        // Preparar la consulta SQL
+        $sql = "DELETE FROM $tabla WHERE id = ?";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bind_param("i", $id);
+
+        if ($stmt->execute()) {
+            // Si es un empleado/reporte, manejar la eliminación de la imagen
+            if ($tipo !== 'solicitud' && isset($data['avatar'])) {
+                $avatarName = $data['avatar'];
+                $dirLocal = "fotos_empleados";
+                $filePath = $dirLocal . '/' . $avatarName;
+                if (file_exists($filePath)) {
+                    unlink($filePath); // Eliminar el archivo de imagen
+                }
             }
-            echo json_encode(array("success" => true, "message" => "Reporte eliminado correctamente"));
+            echo json_encode(array("success" => true, "message" => "Registro eliminado correctamente"));
         } else {
-            echo json_encode(array("success" => false, "message" => "El parámetro 'id' no se proporcionó"));
+            echo json_encode(array("success" => false, "message" => "Error al eliminar el registro: " . $conexion->error));
         }
+
+        $stmt->close();
     } else {
-        // Si no se proporcionó el parámetro 'action', devolver un mensaje de error
-        echo json_encode(array("success" => false, "message" => "La acción no se proporcionó"));
+        // Si no se proporcionaron los datos correctamente, devolver un mensaje de error
+        echo json_encode(array("success" => false, "message" => "Los datos no se proporcionaron correctamente"));
     }
 }

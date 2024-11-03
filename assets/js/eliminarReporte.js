@@ -42,53 +42,53 @@ async function cargarModalConfirmacion() {
  */
 async function EliminarReporte(idEmpleado, avatarEmpleado) {
   try {
-    // Llamar a la función para cargar y mostrar la modal de confirmación
     await cargarModalConfirmacion();
 
-    // Establecer el ID y la ruta del avatar del empleado en el botón de confirmación
-    document
-      .getElementById("confirmDeleteBtn")
-      .setAttribute("data-id", idEmpleado);
-    document
-      .getElementById("confirmDeleteBtn")
-      .setAttribute("data-avatar", avatarEmpleado);
+    const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
+    confirmDeleteBtn.setAttribute("data-id", idEmpleado);
+    confirmDeleteBtn.setAttribute("data-tipo", avatarEmpleado);
 
-    // Agregar un event listener al botón "Eliminar empleado"
-    document
-      .getElementById("confirmDeleteBtn")
-      .addEventListener("click", async function () {
-        // Obtener el ID y la ruta del avatar del empleado a eliminar
-        var idEmpleado = this.getAttribute("data-id");
+    confirmDeleteBtn.onclick = async function () {
+      try {
+        const response = await axios.post("acciones/delete.php", {
+          id: idEmpleado,
+          tipo: avatarEmpleado
+        });
 
-        try {
-          const response = await axios.post("acciones/delete.php", {
-            id: idEmpleado,
-          });
-
-          if (response.status === 200) {
-            // Eliminar la fila correspondiente a este empleado de la tabla
-            document.querySelector(`#empleado_${idEmpleado}`).remove();
-            //Llamar a la función para mostrar un mensaje de éxito
+        if (response.data.success) {
+          let elementId;
+          if (avatarEmpleado === 'solicitud') {
+            elementId = `solicitud_${idEmpleado}`;
+          } else {
+            elementId = `empleado_${idEmpleado}`;
+          }
+          const elementToRemove = document.getElementById(elementId);
+          if (elementToRemove) {
+            elementToRemove.remove();
             if (window.toastrOptions) {
               toastr.options = window.toastrOptions;
-              toastr.error("¡El reporte se elimino correctamente!.");
+              toastr.success(response.data.message);
             }
           } else {
-            alert(`Error al eliminar el reporte con ID ${idEmpleado}`);
+            console.error(`Elemento con id ${elementId} no encontrado`);
+            console.log("DOM actual:", document.body.innerHTML);
+            alert(`El elemento ${elementId} no se encontró en la página. El registro se eliminó de la base de datos, pero la interfaz no se actualizó. Por favor, recargue la página.`);
           }
-        } catch (error) {
-          console.error(error);
-          alert("Hubo un problema al eliminar al reporte");
-        } finally {
-          // Cerrar la modal de confirmación
-          var confirmModal = bootstrap.Modal.getInstance(
-            document.getElementById("confirmModal")
-          );
+        } else {
+          alert(response.data.message);
+        }
+      } catch (error) {
+        console.error("Error completo:", error);
+        alert("Hubo un problema al eliminar el registro");
+      } finally {
+        const confirmModal = bootstrap.Modal.getInstance(document.getElementById("confirmModal"));
+        if (confirmModal) {
           confirmModal.hide();
         }
-      });
+      }
+    };
   } catch (error) {
-    console.error(error);
+    console.error("Error al cargar la modal:", error);
     alert("Hubo un problema al cargar la modal de confirmación");
   }
 }
