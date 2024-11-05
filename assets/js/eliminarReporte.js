@@ -40,28 +40,28 @@ async function cargarModalConfirmacion() {
 /**
  * Función para eliminar un empleado desde la modal
  */
-async function EliminarReporte(idEmpleado, avatarEmpleado) {
+async function EliminarReporte(idEmpleado, tipo) {
   try {
     await cargarModalConfirmacion();
 
     const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
     confirmDeleteBtn.setAttribute("data-id", idEmpleado);
-    confirmDeleteBtn.setAttribute("data-tipo", avatarEmpleado);
+    confirmDeleteBtn.setAttribute("data-tipo", tipo);
 
     confirmDeleteBtn.onclick = async function () {
       try {
         const response = await axios.post("acciones/delete.php", {
           id: idEmpleado,
-          tipo: avatarEmpleado
+          tipo: tipo
         });
 
         if (response.data.success) {
-          let elementId;
-          if (avatarEmpleado === 'solicitud') {
-            elementId = `solicitud_${idEmpleado}`;
-          } else {
-            elementId = `empleado_${idEmpleado}`;
-          }
+          let elementId = tipo === 'solicitud' ? 
+            `solicitud_${idEmpleado}` : 
+            `empleado_${idEmpleado}`;
+            
+          console.log("Buscando elemento con ID:", elementId); // Para debugging
+          
           const elementToRemove = document.getElementById(elementId);
           if (elementToRemove) {
             elementToRemove.remove();
@@ -71,8 +71,8 @@ async function EliminarReporte(idEmpleado, avatarEmpleado) {
             }
           } else {
             console.error(`Elemento con id ${elementId} no encontrado`);
-            console.log("DOM actual:", document.body.innerHTML);
-            alert(`El elemento ${elementId} no se encontró en la página. El registro se eliminó de la base de datos, pero la interfaz no se actualizó. Por favor, recargue la página.`);
+            // Intentar actualizar la tabla completa
+            location.reload();
           }
         } else {
           alert(response.data.message);

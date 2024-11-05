@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $IdEmpleado= (int)$_GET['id'];
 
     // Realizar la consulta para obtener los detalles del empleado con el ID proporcionado
-    $sql = "SELECT * FROM trabajadas WHERE id = $IdEmpleado LIMIT 1";
+    $sql = "SELECT * FROM solicitudes WHERE id = $IdEmpleado LIMIT 1";
     $resultado = $conexion->query($sql);
 
     // Verificar si la consulta se ejecutó correctamente

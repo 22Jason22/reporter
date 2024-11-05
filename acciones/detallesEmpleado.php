@@ -3,7 +3,7 @@ require_once("../config/config.php");
 $id = $_GET['id'];
 
 // Consultar la base de datos para obtener los detalles del empleado
-$sql = "SELECT * FROM trabajadas WHERE id = $id LIMIT 1";
+$sql = "SELECT * FROM solicitudes WHERE id = $id LIMIT 1";
 $query = $conexion->query($sql);
 $reporte = $query->fetch_assoc();
 
