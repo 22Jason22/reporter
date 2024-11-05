@@ -7,6 +7,9 @@
     box-sizing: border-box;
 }
 
+
+
+
 .cintillo {
     position: absolute;
     top: 0;
@@ -50,6 +53,8 @@ header {
     z-index: 99;
 
 }
+
+
 
 .logo {
     font-size: 2.3rem;

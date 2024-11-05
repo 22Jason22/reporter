@@ -62,7 +62,7 @@
                     <h1 class="text-center">
                         Lista de Reportes (<?php echo $totalSolicitudes ?>)
                         <span class="float-end">
-                            <a href="acciones/exportar.php" class="btn btn-success" title="Exportar a CSV" download="Reportes.csv"><i class="bi bi-filetype-csv"></i></a>
+                        <a href="#" class="btn btn-success" title="Exportar datos" onclick="mostrarModalExportar()"><i class="bi bi-download"></i></a>
                         </span>
                         <hr>
                     </h1>
@@ -117,7 +117,8 @@
     <script src="assets/js/refreshTableEdit.js"></script>
     <script src="assets/js/alertas.js"></script>
     <script src="js/navegacion.js"></script>
-
+    <script src="assets/js/exportar.js"></script>
+    
     <!-------------------------Librería  datatable para la tabla -------------------------->
     <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
