@@ -15,10 +15,6 @@
                         <i class="bi bi-file-earmark-pdf me-2"></i>
                         Exportar a PDF
                     </button>   
-                    <button type="button" class="btn btn-info btn-lg btn-exportar" data-formato="csv" style="width: 300px;margin-top: 20px;">
-                        <i class="bi bi-file-earmark-text me-2"></i>
-                        Exportar a CSV
-                    </button>
                 </div>
             </div>
             <div class="modal-footer">

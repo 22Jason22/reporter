@@ -17,6 +17,10 @@
 
     </div>
 
+    <div class="logo-container">
+        <img src="assets/imgs/logo_univ.png" alt="Logo Universidad" class="logo-universidad">
+    </div>
+
     <div class="fondo">
 
         <div class="contenedor-form login">

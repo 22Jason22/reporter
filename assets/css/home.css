@@ -8,7 +8,18 @@
 }
 
 
+.logo-container {
+    position: absolute;
+    top: 50px; /* Ajusta este valor según el alto de tu cintillo */
+    left: 20px;
+    z-index: 999;
+}
 
+.logo-universidad {
+    margin-top: 1cm;
+    max-width: 150px; /* Ajusta este valor según el tamaño deseado para tu logo */
+    height: auto;
+}
 
 .cintillo {
     position: absolute;
@@ -353,10 +364,3 @@ tr td {
     text-align: start !important;
 }
 
-.navegation .menu-item.active {
-
-    font-weight: bold;
-
-    text-decoration: underline;
-
-}

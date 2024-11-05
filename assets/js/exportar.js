@@ -1,7 +1,4 @@
-/**
- * Función para cargar y mostrar la modal de exportación
- */
-async function mostrarModalExportar(exportarModal) {
+async function mostrarModalExportar() {
     try {
         // Ocultar modal existente si hay alguna
         const existingModal = document.getElementById("exportarModal");
@@ -19,14 +16,9 @@ async function mostrarModalExportar(exportarModal) {
             throw new Error("Error al cargar la modal de exportación");
         }
 
-        // Obtener el contenido de la modal
         const modalHTML = await response.text();
-
-        // Crear contenedor para la modal
         const modalContainer = document.createElement("div");
         modalContainer.innerHTML = modalHTML;
-
-        // Agregar la modal al documento
         document.body.appendChild(modalContainer);
 
         // Configurar los eventos de los botones
@@ -35,19 +27,19 @@ async function mostrarModalExportar(exportarModal) {
             boton.addEventListener('click', async function() {
                 const formato = this.getAttribute('data-formato');
                 try {
-                    // Cerrar la modal
                     const modal = bootstrap.Modal.getInstance(modalContainer.querySelector('#exportarModal'));
                     modal.hide();
 
-                    // Mostrar indicador de carga
                     if (window.toastrOptions) {
                         toastr.info('Preparando la exportación...');
                     }
 
-                    // Realizar la exportación
-                    window.location.href = `acciones/exportar.php?formato=${formato}&tabla=trabajadas`;
+                    // Determinar la tabla actual basada en la URL
+                    const paginaActual = window.location.pathname;
+                    const tabla = paginaActual.includes('solicitudes.php') ? 'solicitudes' : 'trabajadas';
                     
-                    // Mostrar mensaje de éxito después de un breve delay
+                    window.location.href = `acciones/exportar.php?formato=${formato}&tabla=${tabla}`;
+                    
                     setTimeout(() => {
                         if (window.toastrOptions) {
                             toastr.success('Archivo exportado correctamente');
@@ -62,7 +54,6 @@ async function mostrarModalExportar(exportarModal) {
             });
         });
 
-        // Mostrar la modal
         const myModal = new bootstrap.Modal(modalContainer.querySelector('#exportarModal'));
         myModal.show();
 

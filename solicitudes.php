@@ -53,6 +53,9 @@
     $totalSolicitudes = $solicitudes->num_rows;
     ?>
 
+    <div class="logo-container">
+        <img src="assets/imgs/logo_univ.png" alt="Logo Universidad" class="logo-universidad">
+    </div>
 
     <div class="container">
 
