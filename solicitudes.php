@@ -56,6 +56,9 @@
     <div class="logo-container">
         <img src="assets/imgs/logo_univ.png" alt="Logo Universidad" class="logo-universidad">
     </div>
+    <div class="logo-container_INTI">
+        <img src="assets/imgs/Logo_inti.png" alt="Logo Instituto" class="logo-instituto">
+    </div>
 
     <div class="container">
 
