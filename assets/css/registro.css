@@ -29,6 +29,32 @@ body {
    /* para que la imagen se adapte al tamaño de la barra */
 }
 
+.logo-container {
+  position: absolute;
+  top: 50px; /* Ajusta este valor según el alto de tu cintillo */
+  left: 20px;
+  z-index: 999;
+}
+
+.logo-universidad {
+  margin-top: 1cm;
+  max-width: 150px; /* Ajusta este valor según el tamaño deseado para tu logo */
+  height: auto;
+}
+
+.logo-container_INTI {
+  position: absolute; /* Cambiado a absolute para alinearlo correctamente */
+  top: 50px; /* Ajusta este valor según el alto de tu cintillo */
+  right: 20px; /* Cambiado a right para posicionarlo a la derecha */
+  z-index: 999;
+}
+
+.logo-instituto {
+  margin-top: 1cm;
+  max-width: 150px; /* Ajusta este valor según el tamaño deseado para tu logo */
+  height: auto;
+}
+
 p,
 h1,
 h2,
