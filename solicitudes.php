@@ -30,6 +30,7 @@
 
         <nav class="navegation">
 
+        <a href="dashboard.php" class="menu-item">Dashboard</a>
         <a href="principal.php" id="menuTrabajadas" class="menu-item active">Trabajadas</a>
         <a href="solicitudes.php" id="menuSolicitudes" class="menu-item">Solicitudes</a>
 
