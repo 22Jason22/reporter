@@ -8,6 +8,8 @@
 
 	<!-- STYLE CSS -->
 	<link rel="stylesheet" href="assets/css/registro.css">
+	<link rel="icon" href="assets\imgs\Logo_inti.png">
+
 </head>
 
 <body>
