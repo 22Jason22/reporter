@@ -40,36 +40,36 @@
 					<div class="columna">
 
 						<div class="form-holder active">
-							<input type="text" placeholder="Nombre" class="form-control" name="nombre" required>
+							<input type="text" placeholder="Nombre" class="form-control" name="nombre" maxlength="30" required>
 						</div>
 
 						<div class="form-holder active">
-							<input type="text" placeholder="Apellido" class="form-control" name="apellido" required>
-						</div>
-
-					</div>
-
-					<div class="columna">
-
-
-						<div class="form-holder active">
-							<input type="number" placeholder="Cedula" class="form-control" name="cedula" required>
-						</div>
-
-						<div class="form-holder active">
-							<input type="input" placeholder="Usuario" class="form-control" name="user_nom" required>
+							<input type="text" placeholder="Apellido" class="form-control" name="apellido" maxlength="30" required>
 						</div>
 
 					</div>
 
 					<div class="columna">
 
+
 						<div class="form-holder active">
-							<input type="password" placeholder="Contraseña" class="form-control" name="user_pass" id="user_pass" required>
+							<input type="number" placeholder="Cedula" class="form-control" name="cedula" maxlength="30" required>
 						</div>
 
 						<div class="form-holder active">
-							<input type="password" placeholder="Confirmar Contraseña" class="form-control" name="conf_pass" id="conf_pass" required>
+							<input type="input" placeholder="Usuario" class="form-control" name="user_nom" maxlength="30" required>
+						</div>
+
+					</div>
+
+					<div class="columna">
+
+						<div class="form-holder active">
+							<input type="password" placeholder="Contraseña" class="form-control" name="user_pass" maxlength="30" id="user_pass" required>
+						</div>
+
+						<div class="form-holder active">
+							<input type="password" placeholder="Confirmar Contraseña" class="form-control" name="conf_pass" maxlength="30" id="conf_pass" required>
 							<span id="password-error" style="color: red;"></span>
 						</div>
 
@@ -78,11 +78,11 @@
 					<div class="columna">
 
 						<div class="form-holder active">
-							<input type="text" placeholder="Gerencia" class="form-control" name="gerencia" required>
+							<input type="text" placeholder="Gerencia" class="form-control" name="gerencia" maxlength="30" required>
 						</div>
 
 						<div class="form-holder active">
-							<input type="text" placeholder="Area" class="form-control" name="area" required>
+							<input type="text" placeholder="Area" class="form-control" name="area" maxlength="30" required>
 						</div>
 
 					</div>

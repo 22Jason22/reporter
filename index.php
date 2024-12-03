@@ -54,8 +54,6 @@
                     <p>¿No tienes cuenta? <a href="registro.php" class="registrar-link">Registrate</a></p>
                     <?php
 
-                    session_start();
-
 
 
                     ?>

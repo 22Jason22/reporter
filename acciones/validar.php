@@ -16,7 +16,7 @@ if (isset($_POST["ingresar"])) {
 
     if ($resultado->num_rows > 0) {
         // La consulta fue exitosa, inicia sesión
-        header("Location: principal.php");
+        header("Location: dashboard.php");
         exit;
     } else {
         // La consulta no fue exitosa, muestra un mensaje de error

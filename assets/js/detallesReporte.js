@@ -1,6 +1,19 @@
 /**
  * Función para mostrar la modal de detalles del empleado
  */
+window.addEventListener('resize', function() {
+  const container = document.querySelector('.container');
+  if (window.innerWidth < 768) {
+      container.style.width = '100%';
+  } else if (window.innerWidth < 1200) {
+      container.style.width = '70%';
+  } else {
+      container.style.width = '50%';
+  }
+});
+
+// Llama a la función para establecer el ancho inicial
+window.dispatchEvent(new Event('resize'));
 async function verDetallesReporte(idEmpleado) {
   try {
     // Ocultar la modal si está abierta

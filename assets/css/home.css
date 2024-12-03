@@ -185,7 +185,7 @@ header {
 /* llamado .contenedor-form h2 */
 .contenedor-form h2 {
     font-size: 2em;
-    color: #F1EFEF;
+    color: #000000;
     text-align: center;
 }
 
@@ -209,9 +209,16 @@ header {
     color: #F1EFEF;
 }
 
-.contenedor-input input:focus~label,
-.contenedor.input input:valid~label {
-    top: -5px;
+.contenedor-input input:focus ~ label,
+
+.contenedor-input input:valid ~ label {
+
+    top: -5px; /* Ajusta este valor si es necesario */
+
+    font-size: 0.8em; /* Cambia el tamaño de la fuente si es necesario */
+
+    color: #000000; /* O el color que desees */
+
 }
 
 .contenedor-input input {
@@ -221,7 +228,7 @@ header {
     border: none;
     outline: none;
     font-size: 1em;
-    color: #F1EFEF;
+    color: #000000;
     padding: 0 35px;
 }
 
@@ -326,6 +333,39 @@ header {
     margin-top: 180px;
     padding: 20px;
     border-radius: 10px;
+    width: 80%; /* Ancho inicial */
+    max-width: 1200px; /* Ancho máximo para pantallas grandes */
+    transition: width 0.3s ease; /* Transición suave al cambiar el ancho */
+    margin-left: auto; /* Centrar el contenedor */
+    margin-right: auto; /* Centrar el contenedor */
+}
+
+/* Cuando la pantalla es más pequeña de 768px */
+@media (max-width: 768px) {
+    .container {
+        width: 100%; /* Ancho completo en pantallas más pequeñas */
+    }
+}
+
+/* Cuando la pantalla es mayor a 768px */
+@media (min-width: 769px) {
+    .container {
+        width: 70%; /* Ancho más pequeño en pantallas más grandes */
+    }
+}
+
+/* Cuando la pantalla es mayor a 1200px */
+@media (min-width: 1200px) {
+    .container {
+        width: 50%; /* Ancho aún más pequeño en pantallas muy grandes */
+    }
+}
+
+/* Cuando la pantalla es mayor a 1600px */
+@media (min-width: 1600px) {
+    .container {
+        width: 40%; /* Ancho más pequeño en pantallas extremadamente grandes */
+    }
 }
 
 
