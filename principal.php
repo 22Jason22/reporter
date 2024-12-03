@@ -67,6 +67,11 @@
             <div class="sec_trab">
                 <div class="col-md-12">
                     <h1 class="text-center">
+                    <span class="float-start">
+                        <a href="dashboard_trabajadas.php" class="btn btn-primary" title="Ver gráficos">
+                            <i class="bi bi-bar-chart"></i>
+                        </a>
+                    </span>
                         Lista de Reportes (<?php echo $totalReportes ?>)
                         <span class="float-end">
                         <a href="#" class="btn btn-success" title="Exportar datos" onclick="mostrarModalExportar()">
