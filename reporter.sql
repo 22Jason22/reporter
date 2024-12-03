@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-10-2024 a las 19:46:03
+-- Tiempo de generación: 03-12-2024 a las 08:08:00
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -29,69 +29,62 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `solicitudes` (
   `id` int(11) NOT NULL,
-  `id_Expediente` varchar(20) DEFAULT NULL,
-  `tipo_de_sujeto` varchar(20) NOT NULL,
+  `id_expediente` varchar(20) DEFAULT NULL,
+  `tipo_sujeto` varchar(20) NOT NULL,
   `identificador` varchar(20) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `miembros` int(20) DEFAULT NULL,
-  `genero` varchar(50) NOT NULL,
+  `sexo` varchar(50) NOT NULL,
   `edad` int(3) DEFAULT NULL,
   `cedula` varchar(20) NOT NULL,
   `estatus_de_solicitud` varchar(20) NOT NULL,
   `fecha_de_solicitud` date NOT NULL,
-  `hectarea` decimal(10,2) DEFAULT NULL,
+  `hectareas` decimal(10,2) DEFAULT NULL,
   `municipio` varchar(50) NOT NULL,
   `parroquia` varchar(50) NOT NULL,
   `estado` varchar(50) NOT NULL,
   `sede` varchar(50) NOT NULL,
-  `id_de_inspeccion` int(20) DEFAULT NULL,
-  `id_de_solicitud` int(20) DEFAULT NULL
+  `nro_expediente` int(20) DEFAULT NULL,
+  `id_solicitud` int(20) DEFAULT NULL,
+  `telefono` varchar(20) DEFAULT NULL,
+  `mes` varchar(10) DEFAULT NULL,
+  `id_punto_cuenta` varchar(20) DEFAULT NULL,
+  `estatus_punto_cuenta` enum('Activo','Inactivo') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `solicitudes`
 --
 
-INSERT INTO `solicitudes` (`id`, `id_Expediente`, `tipo_de_sujeto`, `identificador`, `nombre`, `miembros`, `genero`, `edad`, `cedula`, `estatus_de_solicitud`, `fecha_de_solicitud`, `hectarea`, `municipio`, `parroquia`, `estado`, `sede`, `id_de_inspeccion`, `id_de_solicitud`) VALUES
-(81, 'EXP-001', 'Persona Natural', 'V-987654321', 'Juan Pérez', NULL, 'Masculino', 35, 'V-123456789', 'Activo', '2022-01-01', 10.50, 'Aragua', 'Maracay', 'Parroquia El Carmen', 'Sede Principal', 12345678, 87654321),
-(82, 'EXP-002', 'Persona Jurídica', 'V-123456789', 'Alejandra Gómez', 2, 'Femenino', 40, 'V-987654321', 'Inactivo', '2022-02-01', 20.00, 'Miranda', 'Los Teques', 'Parroquia El Valle', 'Sede Secundaria', 23456789, 76543210),
-(83, 'EXP-003', 'Grupo', 'V-222222222', 'Los Cañoneros', 3, 'Masculino', 30, 'V-111111111', 'Activo', '2022-03-01', 5.00, 'Carabobo', 'Valencia', 'Parroquia El Centro', 'Sede Terciaria', 34567890, 65432109),
-(84, 'EXP-004', 'Persona Natural', 'V-333333333', 'Daniela Hernández', NULL, 'Femenino', 25, 'V-444444444', 'Inactivo', '2022-04-01', 15.00, 'Zulia', 'Maracaibo', 'Parroquia El Norte', 'Sede Cuaternaria', 45678901, 54321098),
-(85, 'EXP-005', 'Persona Jurídica', 'V-444444444', 'Yusmairobis Díaz', 2, 'Masculino', 45, 'V-555555555', 'Activo', '2022-05-01', 25.00, 'Lara', 'Barquisimeto', 'Parroquia El Sur', 'Sede Quintaria', 56789012, 43210987),
-(86, 'EXP-006', 'Grupo', 'V-555555555', 'Los Adolescentes', 3, 'Femenino', 28, 'V-666666666', 'Inactivo', '2022-06-01', 10.00, 'Falcón', 'Punto Fijo', 'Parroquia El Este', 'Sede Sextaria', 67890123, 32109876),
-(87, 'EXP-007', 'Persona Natural', 'V-666666666', 'Nefertitis García', NULL, 'Masculino', 32, 'V-777777777', 'Activo', '2022-07-01', 12.00, 'Yaracuy', 'San Felipe', 'Parroquia El Oeste', 'Sede Séptima', 78901234, 21098765),
-(88, 'EXP-008', 'Persona Jurídica', 'V-777777777', 'Yaxilany Pérez', 2, 'Femenino', 38, 'V-888888888', 'Inactivo', '2022-08-01', 18.00, 'Cojedes', 'San Carlos', 'Parroquia El Norte', 'Sede Octava', 89012345, 10987654),
-(89, 'EXP-009', 'Grupo', 'V-888888888', 'Los Amigos Invisibles', 3, 'Masculino', 29, 'V-999999999', 'Activo', '2022-09-01', 15.00, 'Guárico', 'San Juan de los Morros', 'Parroquia El Sur', 'Sede Novena', 90123456, 98765432),
-(90, 'EXP-010', 'Persona Natural', 'V-999999999', 'María Rodríguez', NULL, 'Femenino', 42, 'V-000000000', 'Inactivo', '2022-10-01', 20.00, 'Aragua', 'Maracay', 'Parro quia El Carmen', 'Sede Décima', 1234567, 76543219),
-(91, 'EXP-011', 'Persona Jurídica', 'V-111111111', 'Carlos López', 2, 'Masculino', 50, 'V-222222222', 'Activo', '2022-11-01', 30.00, 'Miranda', 'Los Teques', 'Parroquia El Valle', 'Sede Undécima', 12345678, 87654321),
-(92, 'EXP-012', 'Grupo', 'V-222222222', 'Los Jóvenes', 3, 'Femenino', 26, 'V-333333333', 'Inactivo', '2022-12-01', 12.00, 'Carabobo', 'Valencia', 'Parroquia El Centro', 'Sede Duodécima', 23456789, 76543210),
-(93, 'EXP-013', 'Persona Natural', 'V-333333333', 'Ana García', NULL, 'Femenino', 48, 'V-444444444', 'Activo', '2023-01-01', 25.00, 'Zulia', 'Maracaibo', 'Parroquia El Norte', 'Sede Decimotercera', 34567890, 65432109),
-(94, 'EXP-014', 'Persona Jurídica', 'V-444444444', 'Juan Carlos', 2, 'Masculino', 55, 'V-555555555', 'Inactivo', '2023-02-01', 35.00, 'Lara', 'Barquisimeto', 'Parroquia El Sur', 'Sede Decimocuarta', 45678901, 54321098),
-(95, 'EXP-015', 'Grupo', 'V-555555555', 'Los Niños', 3, 'Masculino', 31, 'V-666666666', 'Activo', '2023-03-01', 20.00, 'Falcón', 'Punto Fijo', 'Parroquia El Este', 'Sede Decimoquinta', 56789012, 43210987),
-(96, 'EXP-016', 'Persona Natural', 'V-666666666', 'María Elena', NULL, 'Femenino', 52, 'V-777777777', 'Inactivo', '2023-04-01', 30.00, 'Yaracuy', 'San Felipe', 'Parroquia El Oeste', 'Sede Decimosexta', 67890123, 32109876),
-(97, 'EXP-017', 'Persona Jurídica', 'V-777777777', 'Luis Alberto', 2, 'Masculino', 58, 'V-888888888', 'Activo', '2023-05-01', 40.00, 'Cojedes', 'San Carlos', 'Parroquia El Norte', 'Sede Decimoséptima', 78901234, 21098765),
-(98, 'EXP-018', 'Grupo', 'V-888888888', 'Los Ancianos', 3, 'Femenino', 34, 'V-999999999', 'Inactivo', '2023-06-01', 25.00, 'Guárico', 'San Juan de los Morros', 'Parroquia El Sur', 'Sede Decimoctava', 89012345, 10987654),
-(99, 'EXP-019', 'Persona Natural', 'V-999999999', 'Carlos Eduardo', NULL, 'Masculino', 60, 'V-000000000', 'Activo', '2023-07-01', 45.00, 'Aragua', 'Maracay', 'Parroquia El Carmen', 'Sede Decimonovena', 90123456, 98765432),
-(100, 'EXP-020', 'Persona Jurídica', 'V-111111111', 'María del Carmen', 2, 'Femenino', 62, 'V-222222222', 'Inactivo', '2023-08-01', 50.00, 'Miranda', 'Los Teques', 'Parroquia El Valle', 'Sede Vigésima', 1234567, 76543219),
-(101, 'EXP-021', 'Grupo', 'V-222222222', 'Los Abuelos', 3, 'Masculino', 65, 'V-333333333', 'Activo', '2023-09-01', 55.00, 'Carabobo', 'Valencia', 'Parroquia El Centro', 'Sede Vigésimoprim era', 12345678, 87654321),
-(102, 'EXP-022', 'Persona Natural', 'V-333333333', 'Juan José', NULL, 'Masculino', 68, 'V-444444444', 'Inactivo', '2023-10-01', 60.00, 'Zulia', 'Maracaibo', 'Parroquia El Norte', 'Sede Vigésimosegunda', 23456789, 76543210),
-(103, 'EXP-023', 'Persona Jurídica', 'V-444444444', 'María Luisa', 2, 'Femenino', 70, 'V-555555555', 'Activo', '2023-11-01', 65.00, 'Lara', 'Barquisimeto', 'Parroquia El Sur', 'Sede Vigésimotercera', 34567890, 65432109),
-(104, 'EXP-024', 'Grupo', 'V-555555555', 'Los Jubilados', 3, 'Masculino', 72, 'V-666666666', 'Inactivo', '2023-12-01', 70.00, 'Falcón', 'Punto Fijo', 'Parroquia El Este', 'Sede Vigésimocuarta', 45678901, 54321098),
-(105, 'EXP-025', 'Persona Natural', 'V-666666666', 'Ana María', NULL, 'Femenino', 75, 'V-777777777', 'Activo', '2024-01-01', 75.00, 'Yaracuy', 'San Felipe', 'Parroquia El Oeste', 'Sede Vigésimoquinta', 56789012, 43210987),
-(106, 'EXP-026', 'Persona Jurídica', 'V-777777777', 'Juan Antonio', 2, 'Masculino', 78, 'V-888888888', 'Inactivo', '2024-02-01', 80.00, 'Cojedes', 'San Carlos', 'Parroquia El Norte', 'Sede Vigésimosexta', 67890123, 32109876),
-(107, 'EXP-027', 'Grupo', 'V-888888888', 'Los Pensionados', 3, 'Femenino', 80, 'V-999999999', 'Activo', '2024-03-01', 85.00, 'Guárico', 'San Juan de los Morros', 'Parroquia El Sur', 'Sede Vigésimoséptima', 78901234, 21098765),
-(108, 'EXP-028', 'Persona Natural', 'V-999999999', 'María Teresa', NULL, 'Femenino', 82, 'V-000000000', 'Inactivo', '2024-04-01', 90.00, 'Aragua', 'Maracay', 'Parroquia El Carmen', 'Sede Vigésimoctava', 89012345, 10987654),
-(109, 'EXP-029', 'Persona Jurídica', 'V-111111111', 'Carlos Alberto', 2, 'Masculino', 85, 'V-222222222', 'Activo', '2024-05-01', 95.00, 'Miranda', 'Los Teques', 'Parroquia El Valle', 'Sede Vigésimonovena', 90123456, 98765432),
-(110, 'EXP-030', 'Grupo', 'V-222222222', 'Los Jubilados', 3, 'Masculino', 88, 'V-333333333', 'Inactivo', '2024-06-01', 100.00, 'Carabobo', 'Valencia', 'Parroquia El Centro', 'Sede Trigésima', 1234567, 76543219),
-(111, 'EXP-031', 'Persona Natural', 'V-333333333', 'Juan Carlos', NULL, 'Masculino', 90, 'V-444444444', 'Activo', '2024-07-01', 105.00, 'Zulia', 'Maracaibo', 'Parroquia El Norte', 'Sede Trigésimoprimera', 12345678, 87654321),
-(112, 'EXP-032', 'Persona Jurídica', 'V-444444444', 'María Elena', 2, 'Femenino', 92, 'V-555555555', 'Inactivo', '2024-08-01', 110.00, 'Lara', 'Barquisimeto', 'Parroquia El Sur', 'Sede Tr igésimosegunda', 23456789, 76543210),
-(113, 'EXP-033', 'Grupo', 'V-555555555', 'Los Pensionados', 3, 'Masculino', 95, 'V-666666666', 'Activo', '2024-09-01', 115.00, 'Falcón', 'Punto Fijo', 'Parroquia El Este', 'Sede Trigésimotercera', 34567890, 65432109),
-(114, 'EXP-034', 'Persona Natural', 'V-666666666', 'Ana María', NULL, 'Femenino', 97, 'V-777777777', 'Inactivo', '2024-10-01', 120.00, 'Yaracuy', 'San Felipe', 'Parroquia El Oeste', 'Sede Trigésimocuarta', 45678901, 54321098),
-(115, 'EXP-035', 'Persona Jurídica', 'V-777777777', 'Juan Antonio', 2, 'Masculino', 100, 'V-888888888', 'Activo', '2024-11-01', 125.00, 'Cojedes', 'San Carlos', 'Parroquia El Norte', 'Sede Trigésimoquinta', 56789012, 43210987),
-(116, 'EXP-036', 'Grupo', 'V-888888888', 'Los Jubilados', 3, 'Femenino', 102, 'V-999999999', 'Inactivo', '2024-12-01', 130.00, 'Guárico', 'San Juan de los Morros', 'Parroquia El Sur', 'Sede Trigésimosexta', 67890123, 32109876),
-(117, 'EXP-037', 'Persona Natural', 'V-999999999', 'María Teresa', NULL, 'Femenino', 105, 'V-000000000', 'Activo', '2025-01-01', 135.00, 'Aragua', 'Maracay', 'Parroquia El Carmen', 'Sede Trigésimoséptima', 78901234, 21098765),
-(118, 'EXP-038', 'Persona Jurídica', 'V-111111111', 'Carlos Alberto', 2, 'Masculino', 108, 'V-222222222', 'Inactivo', '2025-02-01', 140.00, 'Miranda', 'Los Teques', 'Parroquia El Valle', 'Sede Trigésimoctava', 89012345, 10987654),
-(119, 'EXP-039', 'Grupo', 'V-222222222', 'Los Pensionados', 3, 'Masculino', 110, 'V-333333333', 'Activo', '2025-03-01', 145.00, 'Carabobo', 'Valencia', 'Parroquia El Centro', 'Sede Trigésimonovena', 90123456, 98765432);
+INSERT INTO `solicitudes` (`id`, `id_expediente`, `tipo_sujeto`, `identificador`, `nombre`, `miembros`, `sexo`, `edad`, `cedula`, `estatus_de_solicitud`, `fecha_de_solicitud`, `hectareas`, `municipio`, `parroquia`, `estado`, `sede`, `nro_expediente`, `id_solicitud`, `telefono`, `mes`, `id_punto_cuenta`, `estatus_punto_cuenta`) VALUES
+(90, 'EXP-010', 'Persona Natural', 'V-999999999', 'María Rodríguez', NULL, 'Femenino', 42, 'V-000000000', 'Inactivo', '2022-10-01', 20.00, 'Aragua', 'Maracay', 'Parro quia El Carmen', 'Sede Décima', 1234567, 76543219, '0426-3698521', 'Octubre', '12345', 'Activo'),
+(91, 'EXP-011', 'Persona Jurídica', 'V-111111111', 'Carlos López', 2, 'Masculino', 50, 'V-222222222', 'Activo', '2022-11-01', 30.00, 'Miranda', 'Los Teques', 'Parroquia El Valle', 'Sede Undécima', 12345678, 87654321, '0414-7410852', 'Noviembre', '23456', 'Inactivo'),
+(92, 'EXP-012', 'Grupo', 'V-222222222', 'Los Jóvenes', 3, 'Femenino', 26, 'V-333333333', 'Inactivo', '2022-12-01', 12.00, 'Carabobo', 'Valencia', 'Parroquia El Centro', 'Sede Duodécima', 23456789, 76543210, '0424-9630258', 'Diciembre', '34567', 'Activo'),
+(93, 'EXP-013', 'Persona Natural', 'V-333333333', 'Ana García', NULL, 'Femenino', 48, 'V-444444444', 'Activo', '2023-01-01', 25.00, 'Zulia', 'Maracaibo', 'Parroquia El Norte', 'Sede Decimotercera', 34567890, 65432109, '0412-1472583', 'Enero', '45678', 'Inactivo'),
+(94, 'EXP-014', 'Persona Jurídica', 'V-444444444', 'Juan Carlos', 2, 'Masculino', 55, 'V-555555555', 'Inactivo', '2023-02-01', 35.00, 'Lara', 'Barquisimeto', 'Parroquia El Sur', 'Sede Decimocuarta', 45678901, 54321098, '0416-3692581', 'Febrero', '56789', 'Activo'),
+(95, 'EXP-015', 'Grupo', 'V-555555555', 'Los Niños', 3, 'Masculino', 31, 'V-666666666', 'Activo', '2023-03-01', 20.00, 'Falcón', 'Punto Fijo', 'Parroquia El Este', 'Sede Decimoquinta', 56789012, 43210987, '0426-9514723', 'Marzo', '67890', 'Inactivo'),
+(96, 'EXP-016', 'Persona Natural', 'V-666666666', 'María Elena', NULL, 'Femenino', 52, 'V-777777777', 'Inactivo', '2023-04-01', 30.00, 'Yaracuy', 'San Felipe', 'Parroquia El Oeste', 'Sede Decimosexta', 67890123, 32109876, '0414-7896325', 'Abril', '78901', 'Activo'),
+(97, 'EXP-017', 'Persona Jurídica', 'V-777777777', 'Luis Alberto', 2, 'Masculino', 58, 'V-888888888', 'Activo', '2023-05-01', 40.00, 'Cojedes', 'San Carlos', 'Parroquia El Norte', 'Sede Decimoséptima', 78901234, 21098765, '0424-3571598', 'Mayo', '89012', 'Inactivo'),
+(98, 'EXP-018', 'Grupo', 'V-888888888', 'Los Ancianos', 3, 'Femenino', 34, 'V-999999999', 'Inactivo', '2023-06-01', 25.00, 'Guárico', 'San Juan de los Morros', 'Parroquia El Sur', 'Sede Decimoctava', 89012345, 10987654, '0412-9632147', 'Junio', '90123', 'Activo'),
+(99, 'EXP-019', 'Persona Natural', 'V-999999999', 'Carlos Eduardo', NULL, 'Masculino', 60, 'V-000000000', 'Activo', '2023-07-01', 45.00, 'Aragua', 'Maracay', 'Parroquia El Carmen', 'Sede Decimonovena', 90123456, 98765432, '0416-7418529', 'Julio', '01234', 'Inactivo'),
+(100, 'EXP-020', 'Persona Jurídica', 'V-111111111', 'María del Carmen', 2, 'Femenino', 62, 'V-222222222', 'Inactivo', '2023-08-01', 50.00, 'Miranda', 'Los Teques', 'Parroquia El Valle', 'Sede Vigésima', 1234567, 76543219, '0426-9517536', 'Agosto', '13579', 'Activo'),
+(101, 'EXP-021', 'Grupo', 'V-222222222', 'Los Abuelos', 3, 'Masculino', 65, 'V-333333333', 'Activo', '2023-09-01', 55.00, 'Carabobo', 'Valencia', 'Parroquia El Centro', 'Sede Vigésimoprim era', 12345678, 87654321, '0414-3698741', 'Septiembre', '24680', 'Inactivo'),
+(102, 'EXP-022', 'Persona Natural', 'V-333333333', 'Juan José', NULL, 'Masculino', 68, 'V-444444444', 'Inactivo', '2023-10-01', 60.00, 'Zulia', 'Maracaibo', 'Parroquia El Norte', 'Sede Vigésimosegunda', 23456789, 76543210, '0424-1597536', 'Octubre', '11111', 'Activo'),
+(103, 'EXP-023', 'Persona Jurídica', 'V-444444444', 'María Luisa', 2, 'Femenino', 70, 'V-555555555', 'Activo', '2023-11-01', 65.00, 'Lara', 'Barquisimeto', 'Parroquia El Sur', 'Sede Vigésimotercera', 34567890, 65432109, '0412-7539514', 'Noviembre', '22222', 'Inactivo'),
+(104, 'EXP-024', 'Grupo', 'V-555555555', 'Los Jubilados', 3, 'Masculino', 72, 'V-666666666', 'Inactivo', '2023-12-01', 70.00, 'Falcón', 'Punto Fijo', 'Parroquia El Este', 'Sede Vigésimocuarta', 45678901, 54321098, '0416-9632587', 'Diciembre', '33333', 'Activo'),
+(105, 'EXP-025', 'Persona Natural', 'V-666666666', 'Ana María', NULL, 'Femenino', 75, 'V-777777777', 'Activo', '2024-01-01', 75.00, 'Yaracuy', 'San Felipe', 'Parroquia El Oeste', 'Sede Vigésimoquinta', 56789012, 43210987, '0426-1472583', 'Enero', '44444', 'Inactivo'),
+(106, 'EXP-026', 'Persona Jurídica', 'V-777777777', 'Juan Antonio', 2, 'Masculino', 78, 'V-888888888', 'Inactivo', '2024-02-01', 80.00, 'Cojedes', 'San Carlos', 'Parroquia El Norte', 'Sede Vigésimosexta', 67890123, 32109876, '0414-9517536', 'Febrero', '55555', 'Activo'),
+(107, 'EXP-027', 'Grupo', 'V-888888888', 'Los Pensionados', 3, 'Femenino', 80, 'V-999999999', 'Activo', '2024-03-01', 85.00, 'Guárico', 'San Juan de los Morros', 'Parroquia El Sur', 'Sede Vigésimoséptima', 78901234, 21098765, '0424-3698741', 'Marzo', '66666', 'Inactivo'),
+(108, 'EXP-028', 'Persona Natural', 'V-999999999', 'María Teresa', NULL, 'Femenino', 82, 'V-000000000', 'Inactivo', '2024-04-01', 90.00, 'Aragua', 'Maracay', 'Parroquia El Carmen', 'Sede Vigésimoctava', 89012345, 10987654, '0412-7418529', 'Abril', '77777', 'Activo'),
+(109, 'EXP-029', 'Persona Jurídica', 'V-111111111', 'Carlos Alberto', 2, 'Masculino', 85, 'V-222222222', 'Activo', '2024-05-01', 95.00, 'Miranda', 'Los Teques', 'Parroquia El Valle', 'Sede Vigésimonovena', 90123456, 98765432, '0416-1597536', NULL, '88888', 'Inactivo'),
+(110, 'EXP-030', 'Grupo', 'V-222222222', 'Los Jubilados', 3, 'Masculino', 88, 'V-333333333', 'Inactivo', '2024-06-01', 100.00, 'Carabobo', 'Valencia', 'Parroquia El Centro', 'Sede Trigésima', 1234567, 76543219, '0426-7539514', NULL, '99999', 'Activo'),
+(111, 'EXP-031', 'Persona Natural', 'V-333333333', 'Juan Carlos', NULL, 'Masculino', 90, 'V-444444444', 'Activo', '2024-07-01', 105.00, 'Zulia', 'Maracaibo', 'Parroquia El Norte', 'Sede Trigésimoprimera', 12345678, 87654321, '0414-9632587', NULL, '12121', 'Inactivo'),
+(112, 'EXP-032', 'Persona Jurídica', 'V-444444444', 'María Elena', 2, 'Femenino', 92, 'V-555555555', 'Inactivo', '2024-08-01', 110.00, 'Lara', 'Barquisimeto', 'Parroquia El Sur', 'Sede Tr igésimosegunda', 23456789, 76543210, '0424-1472583', NULL, '23232', 'Activo'),
+(113, 'EXP-033', 'Grupo', 'V-555555555', 'Los Pensionados', 3, 'Masculino', 95, 'V-666666666', 'Activo', '2024-09-01', 115.00, 'Falcón', 'Punto Fijo', 'Parroquia El Este', 'Sede Trigésimotercera', 34567890, 65432109, '0412-9517536', NULL, '34343', 'Inactivo'),
+(114, 'EXP-034', 'Persona Natural', 'V-666666666', 'Ana María', NULL, 'Femenino', 97, 'V-777777777', 'Inactivo', '2024-10-01', 120.00, 'Yaracuy', 'San Felipe', 'Parroquia El Oeste', 'Sede Trigésimocuarta', 45678901, 54321098, '0416-3698741', NULL, '45454', 'Activo'),
+(115, 'EXP-035', 'Persona Jurídica', 'V-777777777', 'Juan Antonio', 2, 'Masculino', 100, 'V-888888888', 'Activo', '2024-11-01', 125.00, 'Cojedes', 'San Carlos', 'Parroquia El Norte', 'Sede Trigésimoquinta', 56789012, 43210987, '0426-7418529', NULL, '56565', 'Inactivo'),
+(116, 'EXP-036', 'Grupo', 'V-888888888', 'Los Jubilados', 3, 'Femenino', 102, 'V-999999999', 'Inactivo', '2024-12-01', 130.00, 'Guárico', 'San Juan de los Morros', 'Parroquia El Sur', 'Sede Trigésimosexta', 67890123, 32109876, '0414-1597536', NULL, '67676', 'Activo'),
+(117, 'EXP-037', 'Persona Natural', 'V-999999999', 'María Teresa', NULL, 'Femenino', 105, 'V-000000000', 'Activo', '2025-01-01', 135.00, 'Aragua', 'Maracay', 'Parroquia El Carmen', 'Sede Trigésimoséptima', 78901234, 21098765, '0424-7539514', NULL, '78787', 'Inactivo');
 
 -- --------------------------------------------------------
 
@@ -120,6 +113,37 @@ INSERT INTO `tbl_empleados` (`id`, `nombre`, `edad`, `cedula`, `sexo`, `telefono
 (6, 'Abelado P', 39, '331232', 'Masculino', '23213213', 'Desarrollador', NULL),
 (7, 'Camilo', 30, '444433', 'Masculino', '333434', 'Contador', NULL),
 (9, 'Brenda Cataleya', 18, '111212', 'Masculino', '5565656', 'Desarrollador Web', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `terrenos`
+--
+
+CREATE TABLE `terrenos` (
+  `id` int(11) NOT NULL,
+  `id_solicitud` int(11) NOT NULL,
+  `hectareas` decimal(10,2) NOT NULL,
+  `metros_cuadrados` decimal(10,2) NOT NULL,
+  `longitud` decimal(10,2) NOT NULL,
+  `ancho` decimal(10,2) NOT NULL,
+  `forma` varchar(50) DEFAULT 'rectangular',
+  `coordenadas` text DEFAULT NULL,
+  `norte` varchar(255) DEFAULT NULL,
+  `sur` varchar(255) DEFAULT NULL,
+  `este` varchar(255) DEFAULT NULL,
+  `oeste` varchar(255) DEFAULT NULL,
+  `tipo_suelo` varchar(100) DEFAULT NULL,
+  `uso_actual` varchar(100) DEFAULT NULL,
+  `uso_propuesto` varchar(100) DEFAULT NULL,
+  `pendiente` decimal(5,2) DEFAULT NULL,
+  `altitud` decimal(10,2) DEFAULT NULL,
+  `fuentes_agua` text DEFAULT NULL,
+  `observaciones` text DEFAULT NULL,
+  `fecha_medicion` date DEFAULT NULL,
+  `medido_por` varchar(100) DEFAULT NULL,
+  `documento_medicion` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -154,9 +178,7 @@ CREATE TABLE `trabajadas` (
 --
 
 INSERT INTO `trabajadas` (`id`, `tipo_sujeto`, `identificador`, `nombre`, `telefono`, `sexo`, `edad`, `hectareas`, `id_solicitud`, `id_expediente`, `id_punto_cuenta`, `estatus_punto_cuenta`, `cedula`, `estado`, `municipio`, `parroquia`, `sede`, `nro_expediente`, `mes`) VALUES
-(1, 'Persona Natural', '1234567890', 'Juan Pérez', '0212-1234567', 'Masculino', 35, 10.50, 1, 1, 1, 'Activo', 'V-987654321', 'Aragua', 'Maracay', 'Parroquia El Carmen', 'Sede Principal', 'EXP-001', 'Enero'),
-(2, 'Persona Jurídica', '9876543210', 'Empresa XYZ', '0424-7654321', 'Femenino', 40, 20.00, 2, 2, 2, 'Inactivo', 'V-123456789', 'Miranda', 'Los Teques', 'Parroquia El Valle', 'Sede Secundaria', 'EXP-002', 'Febrero'),
-(3, 'Grupo', '1111111111', 'Grupo ABC', '0414-9012345', 'Masculino', 30, 5.00, 3, 3, 3, 'Activo', 'V-222222222', 'Carabobo', 'Valencia', 'Parroquia El Centro', 'Sede Terciaria', 'EXP-003', 'Marzo'),
+(3, 'Grupo', '1111111111', 'Grupo ABC', '0414-9012345', 'Masculino', 1, 5.00, 3, 3, 3, 'Activo', 'V-222222222', 'Carabobo', 'Valencia', 'Parroquia El Centro', 'Sede Terciaria', 'EXP-003', 'Marzo'),
 (4, 'Persona Natural', '2222222222', 'María García', '0416-1111111', 'Femenino', 25, 15.00, 4, 4, 4, 'Inactivo', 'V-333333333', 'Zulia', 'Maracaibo', 'Parroquia El Norte', 'Sede Cuaternaria', 'EXP-004', 'Abril'),
 (5, 'Persona Jurídica', '3333333333', 'Empresa DEF', '0426-2222222', 'Masculino', 45, 25.00, 5, 5, 5, 'Activo', 'V-444444444', 'Lara', 'Barquisimeto', 'Parroquia El Sur', 'Sede Quintaria', 'EXP-005', 'Mayo'),
 (6, 'Grupo', '4444444444', 'Grupo DEF', '0212-3333333', 'Femenino', 28, 10.00, 6, 6, 6, 'Inactivo', 'V-555555555', 'Falcón', 'Punto Fijo', 'Parroquia El Este', 'Sede Sextaria', 'EXP-006', 'Junio'),
@@ -185,9 +207,7 @@ INSERT INTO `trabajadas` (`id`, `tipo_sujeto`, `identificador`, `nombre`, `telef
 (29, 'Persona Jurídica', '2727272727', 'Empresa ABC', '0416-2626262', 'Masculino', 36, 22.00, 29, 29, 29, 'Activo', 'V-2828282828', 'Lara', 'Barquisimeto', 'Parroquia El Sur', 'Sede Novena', 'EXP-029', 'Mayo'),
 (30, 'Grupo', '2828282828', 'Grupo ABC', '0426-2727272', 'Femenino', 29, 23.00, 30, 30, 30, 'Inactivo', 'V-2929292929', 'Yaracuy', 'San Felipe', 'Parroquia El Este', 'Sede Décima', 'EXP-030', 'Junio'),
 (31, 'Persona Natural', '2929292929', 'Carlos López', '0212-2828282', 'Masculino', 32, 24.00, 31, 31, 31, 'Activo', 'V-3030303030', 'Zulia', 'Maracaibo', 'Parroquia El Carmen', 'Sede Undécima', 'EXP-031', 'Julio'),
-(32, 'Persona Jurídica', '3030303030', 'Empresa DEF', '0424-2929292', 'Femenino', 35, 25.00, 32, 32, 32, 'Inactivo', 'V-3131313131', 'Apure', 'San Fernando de Apure', 'Parroquia El Valle', 'Sede Duodécima', 'EXP-032', 'Agosto'),
-(33, 'Grupo', '3131313131', 'Grupo DEF', '0414-3030303', 'Masculino', 28, 26.00, 33, 33, 33, 'Activo', 'V-3232323232', 'Amazonas', 'Puerto Ayacucho', 'Parroquia El Norte', 'Sede Tercera', 'EXP-033', 'Septiembre'),
-(34, 'Persona Natural', '3232323232', 'Ana Rodríguez', '0416-3131313', 'Femenino', 30, 27.00, 34, 34, 34, 'Inactivo', 'V-3333333333', 'Anzoátegui', 'Barcelona', 'Parroquia El Sur', 'Sede Cuarta', 'EXP-034', 'Octubre');
+(32, 'Persona Jurídica', '3030303030', 'Empresa DEF', '0424-2929292', 'Femenino', 35, 25.00, 32, 32, 32, 'Inactivo', 'V-3131313131', 'Apure', 'San Fernando de Apure', 'Parroquia El Valle', 'Sede Duodécima', 'EXP-032', 'Agosto');
 
 -- --------------------------------------------------------
 
@@ -232,6 +252,13 @@ ALTER TABLE `tbl_empleados`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `terrenos`
+--
+ALTER TABLE `terrenos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_solicitud` (`id_solicitud`);
+
+--
 -- Indices de la tabla `trabajadas`
 --
 ALTER TABLE `trabajadas`
@@ -260,6 +287,12 @@ ALTER TABLE `tbl_empleados`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT de la tabla `terrenos`
+--
+ALTER TABLE `terrenos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `trabajadas`
 --
 ALTER TABLE `trabajadas`
@@ -270,6 +303,16 @@ ALTER TABLE `trabajadas`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `terrenos`
+--
+ALTER TABLE `terrenos`
+  ADD CONSTRAINT `fk_terreno_solicitud` FOREIGN KEY (`id_solicitud`) REFERENCES `solicitudes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
