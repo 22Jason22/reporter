@@ -53,11 +53,11 @@
 
                 <div class="registrar">
                     <p>¿No tienes cuenta? <a href="registro.php" class="registrar-link">Registrate</a></p>
-                    <?php
-
-
-
-                    ?>
+                    
+                </div>
+                <div class="registrar">
+                    <p>Olvidastes tu Contraseña? <a href="recuperar.php" class="registrar-link">Recuperar</a></p>
+                    
                 </div>
 
             </form>

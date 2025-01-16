@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.bootstrap5.css">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
 
     <!-- Libreria para alertas ----->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
@@ -31,10 +31,12 @@
 
         <nav class="navegation">
 
-        <a href="dashboard.php" class="menu-item">Dashboard</a>
-        <a href="principal.php" id="menuTrabajadas" class="menu-item active">Trabajadas</a>
-        <a href="solicitudes.php" id="menuSolicitudes" class="menu-item">Solicitudes</a>
-
+            <a href="dashboard.php" class="menu-item">Dashboard</a>
+            <a href="principal.php" id="menuTrabajadas" class="menu-item active">Trabajadas</a>
+            <a href="solicitudes.php" id="menuSolicitudes" class="menu-item">Solicitudes</a>
+            <a href="Configuracion.php" class="config-icon">
+                <i class="bi bi-gear"></i>
+            </a>
             <button class="btn center" onclick="cerrarSesion()">Cerrar sesión </button>
         </nav>
         <script>
@@ -54,7 +56,7 @@
     $reportes = ObtenerReportes($conexion);
     $totalReportes = $reportes->num_rows;
     ?>
-    
+
     <div class="logo-container">
         <img src="assets/imgs/logo_univ.png" alt="Logo Universidad" class="logo-universidad">
     </div>
@@ -62,64 +64,65 @@
         <img src="assets/imgs/Logo_inti.png" alt="Logo Instituto" class="logo-instituto">
     </div>
 
-    <div class="container">
+    <div class="containerr">
 
         <div class="row justify-content-md-center">
             <div class="sec_trab">
                 <div class="col-md-12">
                     <h1 class="text-center">
-                    <span class="float-start">
-                        <a href="dashboard_trabajadas.php" class="btn btn-primary" title="Ver gráficos">
-                            <i class="bi bi-bar-chart"></i>
-                        </a>
-                    </span>
+                        <span class="float-start">
+                            <a href="dashboard_trabajadas.php" class="btn btn-primary" title="Ver gráficos">
+                                <i class="bi bi-bar-chart"></i>
+                            </a>
+                        </span>
                         Lista de Reportes (<?php echo $totalReportes ?>)
                         <span class="float-end">
-                        <a href="#" class="btn btn-success" title="Exportar datos" onclick="mostrarModalExportar()">
-                            <i class="bi bi-download"></i></a>                        </span>
+                            <a href="#" class="btn btn-success" title="Exportar datos" onclick="mostrarModalExportar()">
+                                <i class="bi bi-download"></i></a> </span>
                         <hr>
                     </h1>
-                        <div class="table-responsive">
-                            <table class="table table-hover" id="table_empleados">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Nombre</th>
-                                        <th scope="col">Edad</th>
-                                        <th scope="col">Cédula</th>
-                                        <th scope="col">Telefono</th>
-                                        <th scope="col">Identificador</th>
-                                        <th scope="col">Acciones</th>
+                    <div class="table-responsive">
+                        <table class="table table-hover" id="table_empleados">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Edad</th>
+                                    <th scope="col">Cédula</th>
+                                    <th scope="col">Telefono</th>
+                                    <th scope="col">Identificador</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                foreach ($reportes as $reporte) { ?>
+                                    <tr id="empleado_<?php echo $reporte['id']; ?>">
+                                        <th scope='row'><?php echo $reporte['id']; ?></th>
+                                        <td><?php echo $reporte['nombre']; ?></td>
+                                        <td> <?php echo $reporte['edad']; ?></td>
+                                        <td><?php echo $reporte['cedula']; ?></td>
+                                        <td><?php echo $reporte['telefono']; ?></td>
+                                        <td><?php echo $reporte['identificador']; ?></td>
+                                        <td>
+                                            <a title="Ver detalles del Reporte" href="#" onclick="verDetallesReporte(<?php echo $reporte['id']; ?>)" class="btn btn-success">
+                                                <i class="bi bi-binoculars"></i>
+                                            </a>
+                                            <a title="Eliminar datos del Empleado" href="#" onclick="EliminarReporte(<?php echo $reporte['id']; ?>, 'empleado')" class="btn btn-danger">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    foreach ($reportes as $reporte) { ?>
-                                        <tr id="empleado_<?php echo $reporte['id']; ?>">
-                                            <th scope='row'><?php echo $reporte['id']; ?></th>
-                                            <td><?php echo $reporte['nombre']; ?></td>
-                                            <td> <?php echo $reporte['edad']; ?></td>
-                                            <td><?php echo $reporte['cedula']; ?></td>
-                                            <td><?php echo $reporte['telefono']; ?></td>
-                                            <td><?php echo $reporte['identificador']; ?></td>
-                                            <td>
-                                                <a title="Ver detalles del Reporte" href="#" onclick="verDetallesReporte(<?php echo $reporte['id']; ?>)" class="btn btn-success">
-                                                    <i class="bi bi-binoculars"></i>
-                                                </a>
-                                                <a title="Eliminar datos del Empleado" href="#" onclick="EliminarReporte(<?php echo $reporte['id']; ?>, 'empleado')" class="btn btn-danger">
-                                                    <i class="bi bi-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
-                        </div>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
 
     </div>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

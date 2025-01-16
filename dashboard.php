@@ -44,6 +44,9 @@
             <a href="dashboard.php" class="menu-item">Dashboard</a>
             <a href="principal.php" id="menuTrabajadas" class="menu-item active">Trabajadas</a>
             <a href="solicitudes.php" id="menuSolicitudes" class="menu-item">Solicitudes</a>
+            <a href="Configuracion.php" class="config-icon">
+        <i class="bi bi-gear"></i>
+        </a>
             <button class="btn center" onclick="cerrarSesion()">Cerrar sesión </button>
         </nav>
         <script>
@@ -107,7 +110,7 @@
         <img src="assets/imgs/Logo_inti.png" alt="Logo Instituto" class="logo-instituto">
     </div>
 
-    <div class="container">
+    <div class="containerr">
         <h1 class="text-center my-4">Dashboard de Reportes</h1>
 
         <div class="text-center mb-4">

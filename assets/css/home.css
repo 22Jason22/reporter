@@ -2,61 +2,15 @@
 
 * {
     font-family: 'Poppins', sans-serif;
-    margin: 1;
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-
-.logo-container {
-    position: absolute;
-    top: 50px; /* Ajusta este valor según el alto de tu cintillo */
-    left: 20px;
-    z-index: 999;
-}
-
-.logo-universidad {
-    margin-top: 1cm;
-    max-width: 150px; /* Ajusta este valor según el tamaño deseado para tu logo */
-    height: auto;
-}
-
-.logo-container_INTI {
-    position: absolute; /* Cambiado a absolute para alinearlo correctamente */
-    top: 50px; /* Ajusta este valor según el alto de tu cintillo */
-    right: 20px; /* Cambiado a right para posicionarlo a la derecha */
-    z-index: 999;
-}
-
-.logo-instituto {
-    margin-top: 1cm;
-    max-width: 150px; /* Ajusta este valor según el tamaño deseado para tu logo */
-    height: auto;
-}
-
-.cintillo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 50px;
-    /* ajustar el alto según sea necesario */
-    background-color: #fff;
-    /* ajustar el color según sea necesario */
-    z-index: 1000;
-    /* para que la barra quede por encima de otros elementos */
-}
-
-.cintillo img {
-    width: 100%;
-    height: 100%;
-    /* para que la imagen se adapte al tamaño de la barra */
 }
 
 body {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     min-height: 100vh;
     background: url(../imgs/fondo.jpeg);
     background-size: cover;
@@ -75,25 +29,81 @@ header {
     align-items: center;
     justify-content: space-between;
     z-index: 99;
-
 }
 
+.logo-container {
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    z-index: 999;
+}
 
+.logo-universidad {
+    margin-top: 1cm;
+    max-width: 150px;
+    height: auto;
+}
 
-.logo {
-    font-size: 2.3rem;
-    color: rgb(0, 0, 0);
-    user-select: none;
-    cursor: pointer;
+.logo-container_INTI {
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    z-index: 999;
+}
+
+.logo-instituto {
+    margin-top: 1cm;
+    max-width: 150px;
+    height: auto;
+}
+
+.containerr {
+    background-color: #fff !important;
+    margin-top: 180px;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 2000px;
+    transition: width 0.3s ease;
+    margin-left: auto;
+    margin-right: auto;
+}
+.containerri {
+    background-color: #fff !important;
+    margin-top: 180px;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 980px;
+    transition: width 0.3s ease;
+    margin-left: auto;
+    margin-right: auto;
+}
+.container_info {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.sec_trab {
+    margin: 20px 0;
+}
+
+.table-responsive {
+    overflow-x: auto;
 }
 
 .navegation a {
     position: relative;
     font-size: 1.1rem;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     text-decoration: none;
     font-weight: 500;
     margin-left: 40px;
+    border: 2px solid;
+    padding: 0.2cm;
+    border-radius: 6px;
 }
 
 .navegation a::after {
@@ -132,15 +142,122 @@ header {
     color: greenyellow;
 }
 
+.profile-card, .profile-details {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px;
+}
+
+.profile-card {
+    width: 250px;
+    text-align: center;
+    border: #000000 solid;
+}
+
+.profile-card img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+.profile-card h2 {
+    font-size: 20px;
+    margin: 10px 0 5px;
+}
+
+.profile-card p {
+    color: #666;
+    margin: 5px 0;
+}
+
+.profile-details {
+    flex-grow: 1;
+    max-width: 600px;
+    border: #000000 solid;
+}
+
+.profile-details .tabs {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.profile-details .tabs a {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #333;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.3s;
+}
+
+.profile-details .tabs a.active {
+    border-bottom: 2px solid #007bff;
+    color: #007bff;
+}
+
+.profile-details h3 {
+ font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.profile-details p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.profile-details .profile-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-details .profile-info .info-item {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.profile-details .profile-info .info-item span {
+    width: 150px;
+    font-weight: 500;
+}
+
+.cintillo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    z-index: 1000;
+}
+
+.cintillo img {
+    width: 100%;
+    height: 100%;
+}
+
+.user-actions {
+    padding-left: 2px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.config-icon {
+    font-size: 24px;
+    color: #000;
+    text-decoration: none;
+    padding-left: 2px;
+}
+
 .fondo {
     position: relative;
-    /* top: 50%;
-    left: 50%; 
-    transform: translate(-50%, -50%); */
+    margin-top: 270px;
     width: 400px;
     height: 440px;
     background: transparent;
-    border: 2px solid rgb(255, 255, 255, .5);
+    border: 2px solid rgba(255, 255, 255, .5);
     border-radius: 20px;
     backdrop-filter: blur(20px);
     box-shadow: 0 0 30px rgba(0, 0, 0, .5);
@@ -149,10 +266,6 @@ header {
     align-items: center;
     overflow: hidden;
     transition: transform .5s ease height .2s ease;
-    transform: scale(1);
-}
-
-.fondo.active-btn {
     transform: scale(1);
 }
 
@@ -165,24 +278,6 @@ header {
     padding: 40px;
 }
 
-.fondo .contenedor-form.login {
-    transition: .17s ease;
-    transform: translateX(0);
-}
-
-.fondo.active .contenedor-from.login {
-    transition: none;
-    transform: translateX(-400px);
-}
-
-.fondo.active .contenedor-from.registrar {
-    transition: transform .17s ease;
-    transform: translateX(0);
-}
-
-
-
-/* llamado .contenedor-form h2 */
 .contenedor-form h2 {
     font-size: 2em;
     color: #000000;
@@ -210,15 +305,10 @@ header {
 }
 
 .contenedor-input input:focus ~ label,
-
 .contenedor-input input:valid ~ label {
-
-    top: -5px; /* Ajusta este valor si es necesario */
-
-    font-size: 0.8em; /* Cambia el tamaño de la fuente si es necesario */
-
-    color: #000000; /* O el color que desees */
-
+    top: -5px;
+    font-size: 0.8em;
+    color: #000000;
 }
 
 .contenedor-input input {
@@ -231,7 +321,6 @@ header {
     color: #000000;
     padding: 0 35px;
 }
-
 
 .contenedor-input .icono {
     position: absolute;
@@ -275,7 +364,8 @@ header {
     background-color: #090f1d;
     color: #F1EFEF;
 }
-.btn_2{
+
+.btn_2 {
     width: 100%;
     height: 45px;
     border: none;
@@ -302,76 +392,6 @@ header {
 
 .registrar p a:hover {
     text-decoration: underline;
-}
-
-
-@media (max-width: 768px) {
-
-    header .navegation {
-
-        flex-direction: column;
-
-        align-items: flex-start;
-
-    }
-
-
-    header .navegation a {
-
-        margin-bottom: 1rem;
-
-    }
-
-}
-
-
-/* css que forma parte del contenido fuera del header */
-
-
-.container {
-    background-color: #fff !important;
-    margin-top: 180px;
-    padding: 20px;
-    border-radius: 10px;
-    width: 80%; /* Ancho inicial */
-    max-width: 1200px; /* Ancho máximo para pantallas grandes */
-    transition: width 0.3s ease; /* Transición suave al cambiar el ancho */
-    margin-left: auto; /* Centrar el contenedor */
-    margin-right: auto; /* Centrar el contenedor */
-}
-
-/* Cuando la pantalla es más pequeña de 768px */
-@media (max-width: 768px) {
-    .container {
-        width: 100%; /* Ancho completo en pantallas más pequeñas */
-    }
-}
-
-/* Cuando la pantalla es mayor a 768px */
-@media (min-width: 769px) {
-    .container {
-        width: 70%; /* Ancho más pequeño en pantallas más grandes */
-    }
-}
-
-/* Cuando la pantalla es mayor a 1200px */
-@media (min-width: 1200px) {
-    .container {
-        width: 50%; /* Ancho aún más pequeño en pantallas muy grandes */
-    }
-}
-
-/* Cuando la pantalla es mayor a 1600px */
-@media (min-width: 1600px) {
-    .container {
-        width: 40%; /* Ancho más pequeño en pantallas extremadamente grandes */
-    }
-}
-
-
-label {
-    display: flex;
-    justify-content: flex-start;
 }
 
 .btn_add {
@@ -416,5 +436,115 @@ thead tr th {
 
 tr td {
     text-align: start !important;
+}
+
+@media (max-width: 768px) {
+    header .navegation {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    header .navegation a {
+        margin-bottom: 1rem;
+    }
+
+    .containerr {
+        width: 95%; /* Ancho completo en pantallas más pequeñas */
+        padding: 10px; /* Ajustar el padding si es necesario */
+    }
+
+    .logo-container, .logo-container_INTI {
+        position: relative; /* Cambiar a relative para evitar problemas de superposición */
+        top: 0; /* Ajustar la posición */
+        left: 0; /* Ajustar la posición */
+        right: 0; /* Ajustar la posición */
+    }
+
+    .profile-card {
+        width: 100%; /* Hacer que la tarjeta de perfil ocupe el 100% en pantallas pequeñas */
+    }
+}
+.th{
+	width: fit-content;
+}
+@media (min-width: 1138px) {
+    .containerr {
+        width: 80%; /* Ancho más pequeño en pantallas más grandes */
+    }
+    .table-responsive{
+        width: 96%;
+    }
+}
+@media (min-width: 1251px) {
+    .containerr {
+        width: 84%; /* Ancho aún más pequeño en pantallas muy grandes */
+    }
+    .table-responsive{
+        width: 101%;
+    }
+    table.table-hover.dataTable{
+        width: 1000.3px;
+        }
+}
+
+@media (min-width: 1365px) {
+    .containerr {
+        width: 84%; /* Ancho aún más pequeño en pantallas muy grandes */
+    }
+    .table-responsive{
+        width: 101%;
+    }
+    table.table-hover.dataTable{
+        width: 1104.3px;
+        }
+}
+@media (min-width: 1524px) {
+    .containerr {
+        width: 84%; /* Ancho aún más pequeño en pantallas muy grandes */
+    }
+    .table-responsive{
+        width: 98%;
+    }
+    table.table-hover.dataTable{
+    width: 1210.3px;
+    }
+}
+
+
+@media (min-width: 1600px) {
+    .containerr {
+        width: 85%; /* Ancho más pequeño en pantallas extremadamente grandes */
+    }
+    .table-responsive{
+        width: 100%;
+    }
+    table.table-hover.dataTable{
+    width: 1393.3px;
+    }
+}
+
+@media (min-width: 1900px) {
+    .containerr {
+        width: 83%; /* Ancho más pequeño en pantallas extremadamente grandes */
+    }
+    .table-responsive{
+        width: 100%;
+    }
+    table.table-hover.dataTable{
+        width: 1580.6px;
+
+}
+}
+@media (min-width: 2277px) {
+    .containerr {
+        width: 100%; /* Ancho más pequeño en pantallas extremadamente grandes */
+    }
+    .table-responsive{
+        width: 100%;
+    }
+    table.table-hover.dataTable{
+            width: 1849.63px;
+
+    }
 }
 

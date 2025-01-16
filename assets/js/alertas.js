@@ -15,3 +15,12 @@ window.toastrOptions = {
   showMethod: "fadeIn",
   hideMethod: "fadeOut",
 };
+
+let currentZoomLevel = window.devicePixelRatio;
+        window.addEventListener('resize', function() {
+            let newZoomLevel = window.devicePixelRatio;
+            if (newZoomLevel !== currentZoomLevel) {
+                window.location.reload();
+                currentZoomLevel = newZoomLevel;
+            }
+        });

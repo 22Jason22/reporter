@@ -7,6 +7,8 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 
+
+
 if (isset($_GET['formato']) && isset($_GET['tabla'])) {
     $formato = $_GET['formato'];
     $tabla = $_GET['tabla'];
