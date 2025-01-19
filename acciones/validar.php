@@ -4,24 +4,64 @@ include "config/config.php";
 
 
 if (isset($_POST["ingresar"])) {
+
     $usuario = $_POST['usuario'];
+
     $contrasena = $_POST['contrasena'];
 
+
     // Verifica si el usuario existe
+
     $sql = "SELECT * FROM users WHERE usuario = ? AND contrasena = ?";
+
     $stmt = $conexion->prepare($sql);
+
     $stmt->bind_param("ss", $usuario, $contrasena);
+
     $stmt->execute();
+
     $resultado = $stmt->get_result();
 
+
     if ($resultado->num_rows > 0) {
+
         // La consulta fue exitosa, inicia sesión
-        header("Location: dashboard.php");
+
+        $usuarioData = $resultado->fetch_assoc(); // Obtener los datos del usuario
+
+        session_start(); // Iniciar la sesión
+
+        $_SESSION['usuario'] = $usuarioData['usuario']; // Almacenar el nombre de usuario
+
+        $_SESSION['rol'] = $usuarioData['rol']; // Almacenar el rol del usuario
+
+
+        // Redirigir según el rol
+
+        if ($usuarioData['rol'] === 'admin') {
+
+            header("Location: principal.php"); // Redirigir a la página del admin
+
+        } elseif ($usuarioData['rol'] === 'usuario') {
+
+            header("Location: principal_usuario.php"); // Redirigir a la página del usuario
+
+        } else {
+
+            header("Location: dashboard.php"); // Redirigir a una página por defecto
+
+        }
+
         exit;
+
     } else {
+
         // La consulta no fue exitosa, muestra un mensaje de error
+
         echo "<center>Usuario o contraseña incorrectos</center>";
+
     }
+
 }  
 
 if (isset($_POST["registro"])) {
