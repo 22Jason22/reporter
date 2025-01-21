@@ -57,6 +57,19 @@ header {
     height: auto;
 }
 
+.container_editar {
+    background-color: #ffffff !important;
+    margin-top: 180px;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 2000px;
+    transition: width 0.3s ease;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
 .containerr {
     background-color: #fff !important;
     margin-top: 180px;

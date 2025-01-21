@@ -109,6 +109,9 @@
                                                 <a title="Ver detalles del Reporte" href="#" onclick="verDetallesReporte(<?php echo $solicitude['id']; ?>)" class="btn btn-success">
                                                     <i class="bi bi-binoculars"></i>
                                                 </a>
+                                                <a title="Editar datos del Reporte" href="editar.php?id=<?php echo $solicitude['id']; ?>&url=<?php echo urlencode($_SERVER['REQUEST_URI']); ?>" class="btn btn-warning">
+                                                <i class="bi bi-pencil"></i>
+                                            </a>
                                                 <a title="Eliminar datos de la Solicitud" href="#" onclick="EliminarReporte(<?php echo $solicitude['id']; ?>, 'solicitud')" class="btn btn-danger">
                                                     <i class="bi bi-trash"></i>
                                                 </a>
