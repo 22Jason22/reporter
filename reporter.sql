@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-01-2025 a las 07:30:10
+-- Tiempo de generación: 21-01-2025 a las 09:09:41
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -61,7 +61,7 @@ INSERT INTO `solicitudes` (`id`, `id_expediente`, `tipo_sujeto`, `identificador`
 (91, 'EXP-011', 'Persona Natural', 'V-31088185', 'Ttabata Franco', NULL, 'Femenino', 21, 'V-31088185', 'Activo', '2022-11-01', 30.00, 'Miranda', 'Los Teques', 'Parroquia El Valle', 'Sede Undécima', 12345678, 87654321, '0414-7410852', 'Noviembre', '23456', 'Inactivo'),
 (92, 'EXP-012', 'Persona Natural', 'V-28771358', 'Enna Pariata', NULL, 'Femenino', 20, 'V-28771358', 'Inactivo', '2022-12-01', 12.00, 'Carabobo', 'Valencia', 'Parroquia El Centro', 'Sede Duodécima', 23456789, 76543210, '0424-9630258', 'Diciembre', '34567', 'Activo'),
 (93, 'EXP-013', 'Persona Natural', 'V-31170801', 'Nehemias Aparicio', NULL, 'Masculino', 20, 'V-31170801', 'Activo', '2023-01-01', 25.00, 'Zulia', 'Maracaibo', 'Parroquia El Norte', 'Sede Decimotercera', 34567890, 65432109, '0412-1472583', 'Enero', '45678', 'Inactivo'),
-(94, 'EXP-014', 'Persona Natural', 'V-30730167', 'Samuel Vegas', NULL, 'Masculino', 20, 'V-30730167', 'Inactivo', '2023-02-01', 35.00, 'Lara', 'Barquisimeto', 'Parroquia El Sur', 'Sede Decimocuarta', 45678901, 54321098, '0416-3692581', 'Febrero', '56789', 'Activo'),
+(94, '321', 'Persona Juridica', '5040302010', 'Samuel Vegas', NULL, 'demasiado', 78, 'V-30730167', 'Inactivo', '2023-02-01', 845.00, 'Lara', 'si', 'ploplovega', 'antimano', 45678901, 321, '0416-7062341', 'Diciembre', '321', ''),
 (95, 'EXP-015', 'Grupo', 'V-555555555', 'Los Niños', 3, 'Masculino', 31, 'V-666666666', 'Activo', '2023-03-01', 20.00, 'Falcón', 'Punto Fijo', 'Parroquia El Este', 'Sede Decimoquinta', 56789012, 43210987, '0426-9514723', 'Marzo', '67890', 'Inactivo'),
 (96, 'EXP-016', 'Persona Natural', 'V-666666666', 'María Elena', NULL, 'Femenino', 52, 'V-777777777', 'Inactivo', '2023-04-01', 30.00, 'Yaracuy', 'San Felipe', 'Parroquia El Oeste', 'Sede Decimosexta', 67890123, 32109876, '0414-7896325', 'Abril', '78901', 'Activo'),
 (97, 'EXP-017', 'Persona Jurídica', 'V-777777777', 'Luis Alberto', 2, 'Masculino', 58, 'V-888888888', 'Activo', '2023-05-01', 40.00, 'Cojedes', 'San Carlos', 'Parroquia El Norte', 'Sede Decimoséptima', 78901234, 21098765, '0424-3571598', 'Mayo', '89012', 'Inactivo'),
@@ -178,7 +178,7 @@ CREATE TABLE `trabajadas` (
 --
 
 INSERT INTO `trabajadas` (`id`, `tipo_sujeto`, `identificador`, `nombre`, `telefono`, `sexo`, `edad`, `hectareas`, `id_solicitud`, `id_expediente`, `id_punto_cuenta`, `estatus_punto_cuenta`, `cedula`, `estado`, `municipio`, `parroquia`, `sede`, `nro_expediente`, `mes`) VALUES
-(3, 'Persona Natural', 'V-30730167', 'Samuel Vegas', '0416-7062510', 'Masculino', 20, 950.00, 3, 3, 3, 'Activo', 'V-30730167', 'Distrito Capital', 'Libertador', 'Parroquia La Vega', 'Sede INTI Central', 'EXP-001', 'Septiembre'),
+(3, 'Persona Rara', '1020304050', 'asd', '0416-7062511', 'Masculino', 56, 30.00, 123, 132, 123, 'Activo', 'V-30730167', 'caraqueño', 'elmio', 'ploploplo', 'san martin', 'EXP-001', 'Abril'),
 (4, 'Persona Natural', 'V-31170801', 'Nehemias Aparicio', '0416-52793500', 'Marculino', 20, 750.00, 4, 4, 4, 'Inactivo', 'V-31170801', 'Distrito Capital', 'Libertador', 'Parroquia La Vega', 'Sede INTI Central', 'EXP-004', 'Abril'),
 (5, 'Persona Natural', 'V-28771358', 'Enna Pariata', '0426-2091914', 'Femenino', 19, 500.00, 5, 5, 5, 'Activo', 'V-28771358', 'Distrito Capital', 'Libertador', 'Parroquia Caricuao', 'Sede INTI Central', 'EXP-005', 'Mayo'),
 (6, 'Persona Natural', 'V-31088185', 'Ttabata Franco', '0424-2189444', 'Femenino', 21, 10.00, 6, 6, 6, 'Inactivo', 'V-31088185', 'Distrito Capital', 'Libertador', 'Parroquia La Candelaria', 'Sede INTI Central', 'EXP-006', 'Junio'),
@@ -205,9 +205,7 @@ INSERT INTO `trabajadas` (`id`, `tipo_sujeto`, `identificador`, `nombre`, `telef
 (27, 'Grupo', '2525252525', 'Grupo YZA', '0424-2424242', 'Masculino', 31, 20.00, 27, 27, 27, 'Activo', 'V-2626262626', 'Falcón', 'Punto Fijo', 'Parroquia El Oeste', 'Sede Séptima', 'EXP-027', 'Marzo'),
 (28, 'Persona Natural', '2626262626', 'María Gómez', '0414-2525252', 'Femenino', 33, 21.00, 28, 28, 28, 'Inactivo', 'V-2727272727', 'Guárico', 'San Juan de los Morros', 'Parroquia El Norte', 'Sede Octava', 'EXP-028', 'Abril'),
 (29, 'Persona Jurídica', '2727272727', 'Empresa ABC', '0416-2626262', 'Masculino', 36, 22.00, 29, 29, 29, 'Activo', 'V-2828282828', 'Lara', 'Barquisimeto', 'Parroquia El Sur', 'Sede Novena', 'EXP-029', 'Mayo'),
-(30, 'Grupo', '2828282828', 'Grupo ABC', '0426-2727272', 'Femenino', 29, 23.00, 30, 30, 30, 'Inactivo', 'V-2929292929', 'Yaracuy', 'San Felipe', 'Parroquia El Este', 'Sede Décima', 'EXP-030', 'Junio'),
-(31, 'Persona Natural', '2929292929', 'Carlos López', '0212-2828282', 'Masculino', 32, 24.00, 31, 31, 31, 'Activo', 'V-3030303030', 'Zulia', 'Maracaibo', 'Parroquia El Carmen', 'Sede Undécima', 'EXP-031', 'Julio'),
-(32, 'Persona Jurídica', '3030303030', 'Empresa DEF', '0424-2929292', 'Femenino', 35, 25.00, 32, 32, 32, 'Inactivo', 'V-3131313131', 'Apure', 'San Fernando de Apure', 'Parroquia El Valle', 'Sede Duodécima', 'EXP-032', 'Agosto');
+(31, 'Persona Natural', '2929292929', 'Carlos López', '0212-2828282', 'Masculino', 32, 24.00, 31, 31, 31, 'Activo', 'V-3030303030', 'Zulia', 'Maracaibo', 'Parroquia El Carmen', 'Sede Undécima', 'EXP-031', 'Julio');
 
 -- --------------------------------------------------------
 
@@ -217,6 +215,7 @@ INSERT INTO `trabajadas` (`id`, `tipo_sujeto`, `identificador`, `nombre`, `telef
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
+  `rol` varchar(12) NOT NULL,
   `nombre` varchar(30) NOT NULL,
   `apellido` varchar(30) NOT NULL,
   `cedula` varchar(20) NOT NULL,
@@ -230,11 +229,15 @@ CREATE TABLE `users` (
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `nombre`, `apellido`, `cedula`, `usuario`, `contrasena`, `area`, `gerencia`) VALUES
-(1, 'Samuel', 'Vegas', '30730167', 'vsamuelv', '1020304050', 'Desarrollo', 'Sistemas'),
-(9, 'Jesus', 'Vegas', '4444', 'vjesusv', '1234', 'Desarrollo', 'Sistemas'),
-(10, 'Jesus', 'Vegas', 'V-7430137', 'vjesusv', '123456', 'Desarrollo', 'Sistemas'),
-(11, 'Samuel', 'Vegas', '30730167', 'vsamuelv', '5040302010', 'Desarrollo', 'Sistemas');
+INSERT INTO `users` (`id`, `rol`, `nombre`, `apellido`, `cedula`, `usuario`, `contrasena`, `area`, `gerencia`) VALUES
+(1, 'admin', 'Samuel', 'Vegas', '30730167', 'vsamuelv', '1020304050', 'Desarrollo', 'Sistemas'),
+(9, '', 'Jesus', 'Vegas', '4444', 'vjesusv', '1234', 'Desarrollo', 'Sistemas'),
+(10, '', 'Jesus', 'Vegas', 'V-7430137', 'vjesusv', '123456', 'Desarrollo', 'Sistemas'),
+(11, 'usuario', 'Samuel', 'Vegas', '30730167', 'vsamuelv', '5040302010', 'Desarrollo', 'Sistemas'),
+(12, 'admin', 's', 's', '12', 'vsv', 'vsv', 'inti', 'sistemas'),
+(13, 'admin', 's', 's', '12', 'vsv', 'vsv', 'inti', 'sistemas'),
+(14, 'usuario', 'asd', 'asd', '456', 'asd', 'asd', 'asd', 'asd'),
+(15, 'usuario', 'asd', 'asd', '456', 'asd', 'asd', 'asd', 'asd');
 
 --
 -- Índices para tablas volcadas
@@ -303,7 +306,7 @@ ALTER TABLE `trabajadas`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Restricciones para tablas volcadas
