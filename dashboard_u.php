@@ -1,4 +1,3 @@
-<!-- dashboard.php -->
 <!DOCTYPE html>
 <html lang="es">
 
@@ -7,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sistema de Reportes INTI</title>
     <link rel="stylesheet" href="assets/css/home.css">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/dataTables.bootstrap5.css">
@@ -20,7 +18,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <style>
         h1 {
             color: #333; /* Cambia el color del texto de los títulos */
@@ -43,9 +42,9 @@
     <header>
         <h2 class="logo">SISREP</h2>
         <nav class="navegation">
-            <a href="dashboard.php" class="menu-item">Dashboard</a>
-            <a href="principal.php" id="menuTrabajadas" class="menu-item active">Trabajadas</a>
-            <a href="solicitudes.php" id="menuSolicitudes" class="menu-item">Solicitudes</a>
+            <a href="dashboard_u.php" class="menu-item">Dashboard</a>
+            <a href="principal_usuario.php" id="menuTrabajadas" class="menu-item active">Trabajadas</a>
+            <a href="solicitudes_usuario.php" id="menuSolicitudes" class="menu-item">Solicitudes</a>
             <a href="Configuracion.php" class="config-icon">
         <i class="bi bi-gear"></i>
         </a>
@@ -61,28 +60,45 @@
     <?php
     include("config/config.php");
     include("acciones/acciones.php");
-    include("acciones/consultas_2.php");
+    include("acciones/consultas.php");
 
+    // Obtener datos combinados
     $dataEstados = obtenerConteoPorEstado($conexion); // Obtener datos de estados
     $dataEdades = obtenerConteoPorEdad($conexion); // Obtener datos de edades
     $dataSedes = obtenerConteoPorSede($conexion); // Obtener datos de sedes
     $dataTipoSujeto = obtenerConteoPorTipoSujeto($conexion); // Obtener datos de tipo de sujeto
 
     // Procesa los datos para el gráfico de estados
-    $labelsEstados = array_column($dataEstados, 'estado'); // Etiquetas del gráfico
-    $valuesEstados = array_column($dataEstados , 'total'); // Valores del gráfico
+    $labelsEstados = array_keys($dataEstados); // Etiquetas del gráfico
+    $combinedValuesEstados = []; // Array para valores combinados
+
+    foreach ($dataEstados as $estado => $totales) {
+        $combinedValuesEstados[] = $totales; // Sumar total de trabajadas y solicitudes
+    }
 
     // Procesa los datos para el gráfico de edades
-    $labelsEdades = array_column($dataEdades, 'edad'); // Etiquetas del gráfico
-    $valuesEdades = array_column($dataEdades, 'total'); // Valores del gráfico
+    $labelsEdades = array_keys($dataEdades); // Etiquetas del gráfico
+    $combinedValuesEdades = [];
+
+    foreach ($dataEdades as $edad => $totales) {
+        $combinedValuesEdades[] = $totales; // Sumar total de trabajadas y solicitudes
+    }
 
     // Procesa los datos para el gráfico de sedes
-    $labelsSedes = array_column($dataSedes, 'sede'); // Etiquetas del gráfico
-    $valuesSedes = array_column($dataSedes, 'total'); // Valores del gráfico
+    $labelsSedes = array_keys($dataSedes); // Etiquetas del gráfico
+    $combinedValuesSedes = [];
+
+    foreach ($dataSedes as $sede => $totales) {
+        $combinedValuesSedes[] = $totales; // Sumar total de trabajadas y solicitudes
+    }
 
     // Procesa los datos para el gráfico de tipo de sujeto
-    $labelsTipoSujeto = array_column($dataTipoSujeto, 'tipo_sujeto'); // Etiquetas del gráfico
-    $valuesTipoSujeto = array_column($dataTipoSujeto, 'total'); // Valores del gráfico
+    $labelsTipoSujeto = array_keys($dataTipoSujeto); // Etiquetas del gráfico
+    $combinedValuesTipoSujeto = [];
+
+    foreach ($dataTipoSujeto as $tipoSujeto => $totales) {
+        $combinedValuesTipoSujeto[] = $totales; // Sumar total de trabajadas y solicitudes
+    }
 
     // Definir colores para los gráficos
     $colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#FF5733', '#33FF57', '#3357FF', '#FF33A1'];
@@ -96,20 +112,23 @@
     </div>
 
     <div class="containerr">
-        <h1 class="text-center my-4">Dashboard de Datos Trabajados</h1>
+        <h1 class="text-center my-4">Dashboard de Datos Totales</h1><div class="text-center mb-4">
+   
+</div>
 
         <div class="text-center mb-4">
-        <a href="dashboard_trabajadas.php" class="btn btn-primary rounded-pill mx-2">Gráficos Trabajadas</a>
-        <a href="dashboard_solicitudes.php" class="btn btn-success rounded-pill mx-2">Gráficos Solicitudes</a>
-        <a href="dashboard.php" class="btn btn-info rounded-pill mx-2" style="margin-top: 10px;">Gráficos Totales</a>
+        <a href="dashboard_trabajadas_u.php" class="btn btn-primary rounded-pill mx-2">Gráficos Trabajadas</a>
+        <a href="dashboard_solicitudes_u.php" class="btn btn-success rounded-pill mx-2">Gráficos Solicitudes</a>
+        <a href="dashboard_u.php" class="btn btn-info rounded-pill mx-2" style="margin-top: 10px;">Gráficos Totales</a>
 
         </div>
+
 
         <div class="row">
             <div class="col-md-6">
                 <div class="bg-light p-3 rounded">
-                <h2 class="text-center">Distribucion de Estados</h2>
-                <canvas id="myChart" width="400" height="200"></canvas>
+                    <h2 class="text-center">Distribucion de Estados</h2>
+                    <canvas id="myChart" width="400" height="200"></canvas>
                 </div>
             </div>
             <div class="col-md-6">
@@ -143,7 +162,7 @@
                     labels: <?php echo json_encode($labelsEstados); ?>,
                     datasets: [{
                         label: 'Total por Estado',
-                        data: <?php echo json_encode($valuesEstados); ?>,
+                        data: <?php echo json_encode($combinedValuesEstados); ?>,
                         backgroundColor: <?php echo json_encode($colors); ?>,
                         borderColor: 'rgba(255, 255, 255, 1)',
                         borderWidth: 1
@@ -162,14 +181,14 @@
                 }
             });
 
-            const ctxEdades = document.getElementById('edadChart').getContext('2d');
+            const ctxEdades = document.getElementById('edadChart').getContext('2d'); 
             const edadChart = new Chart(ctxEdades, {
                 type: 'bar',
                 data: {
                     labels: <?php echo json_encode($labelsEdades); ?>,
                     datasets: [{
                         label: 'Total por Edad',
-                        data: <?php echo json_encode($valuesEdades); ?>,
+                        data: <?php echo json_encode($combinedValuesEdades); ?>,
                         backgroundColor: 'rgba(153, 102, 255, 0.2)',
                         borderColor: 'rgba(153, 102, 255, 1)',
                         borderWidth: 1
@@ -178,7 +197,7 @@
                 options: {
                     scales: {
                         y: {
-                            beginAtZero: false
+                            beginAtZero: true
                         }
                     }
                 }
@@ -191,7 +210,7 @@
                     labels: <?php echo json_encode($labelsSedes); ?>,
                     datasets: [{
                         label: 'Total por Sede',
-                        data: <?php echo json_encode($valuesSedes); ?>,
+                        data: <?php echo json_encode($combinedValuesSedes); ?>,
                         backgroundColor: <?php echo json_encode($colors); ?>,
                         borderColor: 'rgba(255, 255, 255, 1)',
                         borderWidth: 1
@@ -217,7 +236,7 @@
                     labels: <?php echo json_encode($labelsTipoSujeto); ?>,
                     datasets: [{
                         label: 'Total por Tipo de Sujeto',
-                        data: <?php echo json_encode($valuesTipoSujeto); ?>,
+                        data: <?php echo json_encode($combinedValuesTipoSujeto); ?>,
                         backgroundColor: <?php echo json_encode($colors); ?>,
                         borderColor: 'rgba(255, 255, 255, 1)',
                         borderWidth: 1
@@ -246,8 +265,38 @@
         <script src="assets/js/alertas.js"></script>
         <script src="js/navegacion.js"></script>
         <script src="assets/js/exportar.js"></script>
+        <script>
+    document.getElementById('exportPDF').addEventListener('click', function() {
+        const { jsPDF } = window.jspdf;
 
+        // Crear un nuevo documento PDF
+        const doc = new jsPDF();
+
+        // Función para capturar el canvas y agregarlo al PDF
+        function addCanvasToPDF(canvasId, title) {
+            return new Promise((resolve) => {
+                const canvas = document.getElementById(canvasId);
+                html2canvas(canvas).then((canvas) => {
+                    const imgData = canvas.toDataURL('image/png');
+                    doc.addImage(imgData, 'PNG', 10, 10, 190, 100);
+                    doc.text(title, 10, 10);
+                    resolve();
+                });
+            });
+        }
+
+        // Agregar cada gráfico al PDF
+        Promise.all([
+            addCanvasToPDF('myChart', 'Distribución de Estados'),
+            addCanvasToPDF('edadChart', 'Distribución de Edades'),
+            addCanvasToPDF('sedeChart', 'Distribución por Sedes'),
+            addCanvasToPDF('tipoSujetoChart', 'Distribución por Tipo de Sujeto')
+        ]).then(() => {
+            // Guardar el PDF
+            doc.save('dashboard_report.pdf');
+        });
+    });
+</script>
     </div>
 </body>
-
 </html>

@@ -19,7 +19,7 @@
 <body>
 
     <header>
-        <h2 class="logo">Reportes INTI</h2>
+        <h2 class="logo">SISREP</h2>
         <nav class="navegation">
             <a href="dashboard.php" class="menu-item">Dashboard</a>
             <a href="principal.php" id="menuTrabajadas" class="menu-item active">Trabajadas</a>

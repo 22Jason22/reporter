@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/dataTables.bootstrap5.css">
     <link rel="icon" href="assets\imgs\Logo_inti.png">
-
     <!-- Libreria para esquemas -----> 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -43,12 +42,12 @@
     <header>
         <h2 class="logo">SISREP</h2>
         <nav class="navegation">
-            <a href="dashboard.php" class="menu-item">Dashboard</a>
-            <a href="principal.php" id="menuTrabajadas" class="menu-item active">Trabajadas</a>
-            <a href="solicitudes.php" id="menuSolicitudes" class="menu-item">Solicitudes</a>
+            <a href="dashboard_u.php" class="menu-item">Dashboard</a>
+            <a href="principal_usuario.php" id="menuTrabajadas" class="menu-item active">Trabajadas</a>
+            <a href="solicitudes_usuario.php" id="menuSolicitudes" class="menu-item">Solicitudes</a>
             <a href="Configuracion.php" class="config-icon">
-        <i class="bi bi-gear"></i>
-        </a>
+            <i class="bi bi-gear"></i>
+            </a>
             <button class="btn center" onclick="cerrarSesion()">Cerrar sesión </button>
         </nav>
         <script>
@@ -61,7 +60,7 @@
     <?php
     include("config/config.php");
     include("acciones/acciones.php");
-    include("acciones/consultas_2.php");
+    include("acciones/consultas_3.php");
 
     $dataEstados = obtenerConteoPorEstado($conexion); // Obtener datos de estados
     $dataEdades = obtenerConteoPorEdad($conexion); // Obtener datos de edades
@@ -69,7 +68,7 @@
     $dataTipoSujeto = obtenerConteoPorTipoSujeto($conexion); // Obtener datos de tipo de sujeto
 
     // Procesa los datos para el gráfico de estados
-    $labelsEstados = array_column($dataEstados, 'estado'); // Etiquetas del gráfico
+    $labelsEstados = array_column($dataEstados, 'municipio'); // Etiquetas del gráfico
     $valuesEstados = array_column($dataEstados , 'total'); // Valores del gráfico
 
     // Procesa los datos para el gráfico de edades
@@ -96,19 +95,19 @@
     </div>
 
     <div class="containerr">
-        <h1 class="text-center my-4">Dashboard de Datos Trabajados</h1>
+        <h1 class="text-center my-4">Dashboard de Solicitudes</h1>
 
         <div class="text-center mb-4">
-        <a href="dashboard_trabajadas.php" class="btn btn-primary rounded-pill mx-2">Gráficos Trabajadas</a>
-        <a href="dashboard_solicitudes.php" class="btn btn-success rounded-pill mx-2">Gráficos Solicitudes</a>
-        <a href="dashboard.php" class="btn btn-info rounded-pill mx-2" style="margin-top: 10px;">Gráficos Totales</a>
+        <a href="dashboard_trabajadas_u.php" class="btn btn-primary rounded-pill mx-2">Gráficos Trabajadas</a>
+        <a href="dashboard_solicitudes_u.php" class="btn btn-success rounded-pill mx-2">Gráficos Solicitudes</a>
+        <a href="dashboard_u.php" class="btn btn-info rounded-pill mx-2" style="margin-top: 10px;">Gráficos Totales</a>
 
         </div>
 
         <div class="row">
             <div class="col-md-6">
                 <div class="bg-light p-3 rounded">
-                <h2 class="text-center">Distribucion de Estados</h2>
+                <h2 class="text-center">Dashboard de Estados</h2>
                 <canvas id="myChart" width="400" height="200"></canvas>
                 </div>
             </div>

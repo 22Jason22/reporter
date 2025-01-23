@@ -18,7 +18,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <link rel="icon" href="assets\imgs\Logo_inti.png">
+    <link rel="icon" href="assets\imgs\Logo_inti.png">  
+    <script>
+        function confirmSubmit() {
+            return confirm("¿Está seguro de que desea editar esta información?");
+        }
+    </script>
 
 </head>
 
@@ -26,7 +31,7 @@
 
     <header>
 
-        <h2 class="logo">Reportes INTI</h2>
+        <h2 class="logo">SISREP</h2>
 
         <nav class="navegation">
 
@@ -61,7 +66,7 @@
 
     <div class="container_editar">
         <h3>Editar Información</h3><br>
-        <form action="<?php echo strpos($_GET['url'], 'principal.php') !== false ? 'acciones/update_trabajadas.php' : 'acciones/update_solicitudes.php'; ?>" method="POST">
+        <form action="<?php echo strpos($_GET['url'], 'principal.php') !== false ? 'acciones/update_trabajadas.php' : 'acciones/update_solicitudes.php'; ?>" method="POST" onsubmit="return confirmSubmit();">
             <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>"> <!-- Hidden field for user ID -->
             <input type="hidden" name="url" value="<?php echo $_GET['url']; ?>">
             <table class="table">

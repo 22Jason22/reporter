@@ -18,7 +18,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <style>
         h1 {
             color: #333; /* Cambia el color del texto de los títulos */
@@ -39,7 +40,7 @@
 <body>
 
     <header>
-        <h2 class="logo">Reportes INTI</h2>
+        <h2 class="logo">SISREP</h2>
         <nav class="navegation">
             <a href="dashboard.php" class="menu-item">Dashboard</a>
             <a href="principal.php" id="menuTrabajadas" class="menu-item active">Trabajadas</a>
@@ -111,7 +112,9 @@
     </div>
 
     <div class="containerr">
-        <h1 class="text-center my-4">Dashboard de Reportes</h1>
+        <h1 class="text-center my-4">Dashboard de Datos Totales</h1><div class="text-center mb-4">
+   
+</div>
 
         <div class="text-center mb-4">
         <a href="dashboard_trabajadas.php" class="btn btn-primary rounded-pill mx-2">Gráficos Trabajadas</a>
@@ -262,7 +265,38 @@
         <script src="assets/js/alertas.js"></script>
         <script src="js/navegacion.js"></script>
         <script src="assets/js/exportar.js"></script>
+        <script>
+    document.getElementById('exportPDF').addEventListener('click', function() {
+        const { jsPDF } = window.jspdf;
 
+        // Crear un nuevo documento PDF
+        const doc = new jsPDF();
+
+        // Función para capturar el canvas y agregarlo al PDF
+        function addCanvasToPDF(canvasId, title) {
+            return new Promise((resolve) => {
+                const canvas = document.getElementById(canvasId);
+                html2canvas(canvas).then((canvas) => {
+                    const imgData = canvas.toDataURL('image/png');
+                    doc.addImage(imgData, 'PNG', 10, 10, 190, 100);
+                    doc.text(title, 10, 10);
+                    resolve();
+                });
+            });
+        }
+
+        // Agregar cada gráfico al PDF
+        Promise.all([
+            addCanvasToPDF('myChart', 'Distribución de Estados'),
+            addCanvasToPDF('edadChart', 'Distribución de Edades'),
+            addCanvasToPDF('sedeChart', 'Distribución por Sedes'),
+            addCanvasToPDF('tipoSujetoChart', 'Distribución por Tipo de Sujeto')
+        ]).then(() => {
+            // Guardar el PDF
+            doc.save('dashboard_report.pdf');
+        });
+    });
+</script>
     </div>
 </body>
 </html>

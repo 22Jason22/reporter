@@ -27,7 +27,7 @@
 
     <header>
 
-        <h2 class="logo">Reportes INTI</h2>
+        <h2 class="logo">SISREP</h2>
 
         <nav class="navegation">
 
@@ -76,10 +76,14 @@
                             <i class="bi bi-bar-chart"></i>
                         </a>
                     </span>
-                        Lista de Reportes (<?php echo $totalSolicitudes ?>)
+                        Lista de Solicitudes (<?php echo $totalSolicitudes ?>)
                         <span class="float-end">
-                        <a href="#" class="btn btn-success" title="Exportar datos" onclick="mostrarModalExportar()"><i class="bi bi-download"></i></a>
-                        </span>
+                        <a href="añadir_soli.php" class="btn btn-primary" title="Añadir Nuevo Reporte">
+                                <i class="bi bi-plus"></i> 
+                            </a> </span>
+                        <span class="float-end">
+                            <a href="#" class="btn btn-success" title="Exportar datos" onclick="mostrarModalExportar()">
+                                <i class="bi bi-download"></i></a> </span>
                         <hr>
                     </h1>
                         <div class="table-responsive">
@@ -130,7 +134,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="assets/js/detallesReporte.js"></script>
+    <script src="assets/js/detallesReporte_sol.js"></script>
     <script src="assets/js/eliminarReporte.js"></script>
     <script src="assets/js/refreshTableAdd.js"></script>
     <script src="assets/js/refreshTableEdit.js"></script>

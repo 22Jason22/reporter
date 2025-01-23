@@ -94,7 +94,7 @@ a:hover {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: url("../imgs/fondo.jpeg") no-repeat;
+  background: url(../imgs/pan.png) no-repeat;
   background-size: cover;
 }
 

@@ -43,9 +43,9 @@
     <header>
         <h2 class="logo">SISREP</h2>
         <nav class="navegation">
-            <a href="dashboard.php" class="menu-item">Dashboard</a>
-            <a href="principal.php" id="menuTrabajadas" class="menu-item active">Trabajadas</a>
-            <a href="solicitudes.php" id="menuSolicitudes" class="menu-item">Solicitudes</a>
+            <a href="dashboard_u.php" class="menu-item">Dashboard</a>
+            <a href="principal_usuario.php" id="menuTrabajadas" class="menu-item active">Trabajadas</a>
+            <a href="solicitudes_usuario.php" id="menuSolicitudes" class="menu-item">Solicitudes</a>
             <a href="Configuracion.php" class="config-icon">
         <i class="bi bi-gear"></i>
         </a>
@@ -99,9 +99,9 @@
         <h1 class="text-center my-4">Dashboard de Datos Trabajados</h1>
 
         <div class="text-center mb-4">
-        <a href="dashboard_trabajadas.php" class="btn btn-primary rounded-pill mx-2">Gráficos Trabajadas</a>
-        <a href="dashboard_solicitudes.php" class="btn btn-success rounded-pill mx-2">Gráficos Solicitudes</a>
-        <a href="dashboard.php" class="btn btn-info rounded-pill mx-2" style="margin-top: 10px;">Gráficos Totales</a>
+        <a href="dashboard_trabajadas_u.php" class="btn btn-primary rounded-pill mx-2">Gráficos Trabajadas</a>
+        <a href="dashboard_solicitudes_u.php" class="btn btn-success rounded-pill mx-2">Gráficos Solicitudes</a>
+        <a href="dashboard_u.php" class="btn btn-info rounded-pill mx-2" style="margin-top: 10px;">Gráficos Totales</a>
 
         </div>
 

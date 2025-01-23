@@ -40,7 +40,7 @@
 <body>
 
     <header>
-        <h2 class="logo">Reportes INTI</h2>
+        <h2 class="logo">SISREP</h2>
         <nav class="navegation">
             <a href="dashboard.php" class="menu-item">Dashboard</a>
             <a href="principal.php" id="menuTrabajadas" class="menu-item active">Trabajadas</a>
@@ -95,7 +95,7 @@
     </div>
 
     <div class="containerr">
-        <h1 class="text-center my-4">Dashboard de Reportes</h1>
+        <h1 class="text-center my-4">Dashboard de Solicitudes</h1>
 
         <div class="text-center mb-4">
         <a href="dashboard_trabajadas.php" class="btn btn-primary rounded-pill mx-2">Gráficos Trabajadas</a>

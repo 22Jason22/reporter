@@ -27,11 +27,11 @@
 
     <header>
 
-        <h2 class="logo">Reportes INTI</h2>
+        <h2 class="logo">SISREP</h2>
 
         <nav class="navegation">
 
-            <a href="dashboard.php" class="menu-item">Dashboard</a>
+            <a href="dashboard_u.php" class="menu-item">Dashboard</a>
             <a href="principal_usuario.php" id="menuTrabajadas" class="menu-item active">Trabajadas</a>
             <a href="solicitudes_usuario.php" id="menuSolicitudes" class="menu-item">Solicitudes</a>
             <a href="Configuracion.php" class="config-icon">
@@ -75,7 +75,7 @@
                                 <i class="bi bi-bar-chart"></i>
                             </a>
                         </span>
-                        Lista de Reportes (<?php echo $totalReportes ?>)
+                        Lista de Trabajadas (<?php echo $totalReportes ?>)
                         <span class="float-end">
                             <a href="#" class="btn btn-success" title="Exportar datos" onclick="mostrarModalExportar()">
                                 <i class="bi bi-download"></i></a> </span>

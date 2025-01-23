@@ -10,24 +10,30 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.bootstrap5.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
 
-    <!-- Libreria para alertas ----->
+    <!-- Libreria para alertas -----> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <link rel="icon" href="assets\imgs\Logo_inti.png">
 
+    <script>
+        $(document).ready(function() {
+            <?php if (isset($_GET['mensaje'])): ?>
+                toastr.success("<?php echo $_GET['mensaje']; ?>");
+            <?php endif; ?>
+        });
+    </script>
 </head>
 
 <body>
 
     <header>
 
-        <h2 class="logo">Reportes INTI</h2>
+        <h2 class="logo">SISREP</h2>
 
         <nav class="navegation">
 
@@ -41,13 +47,10 @@
         </nav>
         <script>
             function cerrarSesion() {
-
                 window.location.href = "index.php?";
-
             }
         </script>
     </header>
-
 
     <?php
     include("config/config.php");
@@ -75,7 +78,11 @@
                                 <i class="bi bi-bar-chart"></i>
                             </a>
                         </span>
-                        Lista de Reportes (<?php echo $totalReportes ?>)
+                        Lista de Trabajadas (<?php echo $totalReportes ?>)
+                        <span class="float-end">
+                        <a href="añadir.php" class="btn btn-primary" title="Añadir Nuevo Reporte">
+                                <i class="bi bi-plus"></i> 
+                            </a> </span>
                         <span class="float-end">
                             <a href="#" class="btn btn-success" title="Exportar datos" onclick="mostrarModalExportar()">
                                 <i class="bi bi-download"></i></a> </span>
@@ -108,7 +115,7 @@
                                             <a title="Ver detalles del Reporte" href="#" onclick="verDetallesReporte(<?php echo $reporte['id']; ?>)" class="btn btn-success">
                                                 <i class="bi bi-binoculars"></i>
                                             </a>
-<a title="Editar datos del Reporte" href="editar.php?id=<?php echo $reporte['id']; ?>&url=<?php echo urlencode($_SERVER['REQUEST_URI']); ?>" class="btn btn-warning">
+                                            <a title="Editar datos del Reporte" href="editar.php?id=<?php echo $reporte['id']; ?>&url=<?php echo urlencode($_SERVER['REQUEST_URI']); ?>" class="btn btn-warning">
                                                 <i class="bi bi-pencil"></i>
                                             </a>
                                             <a title="Eliminar datos del Empleado" href="#" onclick="EliminarReporte(<?php echo $reporte['id']; ?>, 'empleado')" class="btn btn-danger">
@@ -126,8 +133,6 @@
 
     </div>
 
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="assets/js/detallesReporte.js"></script>
@@ -139,6 +144,7 @@
     <script src="assets/js/exportar.js"></script>
 
     <!-------------------------Librería  datatable para la tabla -------------------------->
+
     <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
     <script>
